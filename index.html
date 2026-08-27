@@ -1,0 +1,1601 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>André Luís Alves Carvalho — Engenharia Elétrica</title>
+<meta name="description" content="Estudante de Engenharia Elétrica na UFPI. Sistemas de potência, proteção de linhas de transmissão, transitórios eletromagnéticos e machine learning aplicado.">
+<meta name="author" content="André Luís Alves Carvalho">
+<link rel="canonical" href="https://andrelsrv.github.io/">
+
+<!-- Cor da barra do navegador (Safari, Chrome Android, webviews do Instagram) -->
+<meta name="theme-color" content="#e9ecef" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#090c10" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+
+<!-- Pré-visualização ao compartilhar (Instagram, WhatsApp, LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="André Luís Alves Carvalho">
+<meta property="og:title" content="André Luís Alves Carvalho — Engenharia Elétrica">
+<meta property="og:description" content="Sistemas de potência, proteção de linhas de transmissão e machine learning aplicado. Pesquisa de Iniciação Científica na UFPI.">
+<meta property="og:url" content="https://andrelsrv.github.io/">
+<meta property="og:image" content="https://andrelsrv.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="André Luís Alves Carvalho — Engenharia Elétrica, sistemas de potência, UFPI.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="André Luís Alves Carvalho — Engenharia Elétrica">
+<meta name="twitter:description" content="Sistemas de potência, proteção de linhas de transmissão e machine learning aplicado. Pesquisa de Iniciação Científica na UFPI.">
+<meta name="twitter:image" content="https://andrelsrv.github.io/og.png">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     TOKENS — grafite frio + âmbar de instrumento
+     ============================================================ */
+  :root {
+    --bg:        #e9ecef;
+    --bg-deep:   #dfe3e7;
+    --surface:   #ffffff;
+    --surface-2: #e2e6ea;
+    --ink:       #0d1319;
+    --ink-mut:   #4a5763;
+    --ink-dim:   #5e6a75;
+    --line:      #ccd3d9;
+    --line-soft: #dde2e7;
+    --accent:    #9a5400;
+    --accent-hi: #c26a00;
+    --glow:      rgba(194, 106, 0, 0.10);
+    --trace:     rgba(154, 84, 0, 0.55);
+    --on-accent: #ffffff;
+
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --body:    "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono:    "JetBrains Mono", ui-monospace, "SF Mono", Consolas, monospace;
+
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --measure: 1080px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:        #090c10;
+      --bg-deep:   #05080b;
+      --surface:   #11161d;
+      --surface-2: #171f28;
+      --ink:       #e9eef3;
+      --ink-mut:   #8593a0;
+      --ink-dim:   #78889a;
+      --line:      #222c37;
+      --line-soft: #1a222b;
+      --accent:    #ffa629;
+      --accent-hi: #ffbe5c;
+      --glow:      rgba(255, 166, 41, 0.13);
+      --trace:     rgba(255, 166, 41, 0.62);
+      --on-accent: #0b0f14;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:        #090c10;
+    --bg-deep:   #05080b;
+    --surface:   #11161d;
+    --surface-2: #171f28;
+    --ink:       #e9eef3;
+    --ink-mut:   #8593a0;
+    --ink-dim:   #78889a;
+    --line:      #222c37;
+    --line-soft: #1a222b;
+    --accent:    #ffa629;
+    --accent-hi: #ffbe5c;
+    --glow:      rgba(255, 166, 41, 0.13);
+    --trace:     rgba(255, 166, 41, 0.62);
+    --on-accent: #0b0f14;
+  }
+
+  /* ============================================================
+     BASE
+     ============================================================ */
+  * { box-sizing: border-box; }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    background: var(--bg);
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16.5px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    /* o realce cinza de toque do WebKit destoa da paleta */
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+
+  /* Alvos de toque: mínimo confortável em tela pequena.
+     Duas condições porque nem todo webview embutido reporta pointer:coarse. */
+  @media (pointer: coarse), (max-width: 720px) {
+    .clink { padding: 13px 18px; }
+    nav.links a { padding: 8px 0; }
+    .brand { padding: 9px 0; }
+    .flink { padding: 6px 0; }
+    .foot-links { gap: 4px; }
+  }
+
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  h1, h2, h3, h4 {
+    font-family: var(--display);
+    font-variation-settings: "wdth" 108;
+    text-wrap: balance;
+    margin: 0;
+    letter-spacing: -0.018em;
+  }
+
+  .wrap { max-width: var(--measure); margin: 0 auto; padding: 0 40px; }
+  @media (max-width: 720px) { .wrap { padding: 0 22px; } }
+
+  .mono {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 26px; height: 1px;
+    background: currentColor;
+    opacity: 0.7;
+  }
+
+  /* ============================================================
+     TEXTURA DE FUNDO — malha de instrumento + brilho do cursor
+     ============================================================ */
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, var(--line-soft) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line-soft) 1px, transparent 1px);
+    background-size: 68px 68px;
+    mask-image: radial-gradient(ellipse 92% 62% at 50% 0%, #000 12%, transparent 78%);
+    -webkit-mask-image: radial-gradient(ellipse 92% 62% at 50% 0%, #000 12%, transparent 78%);
+    opacity: 0.9;
+  }
+  .cursor-glow {
+    position: fixed;
+    top: 0; left: 0;
+    width: 620px; height: 620px;
+    margin: -310px 0 0 -310px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--glow) 0%, transparent 66%);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    will-change: transform;
+  }
+  .js-on .cursor-glow.live { opacity: 1; }
+  @media (hover: none) { .cursor-glow { display: none; } }
+
+  .layer { position: relative; z-index: 2; }
+
+  /* ============================================================
+     BARRA DE PROGRESSO + TOPO
+     ============================================================ */
+  .progress {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    z-index: 60;
+    will-change: transform;
+  }
+
+  header.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.35s ease, background 0.35s ease;
+  }
+  header.topbar.stuck { border-bottom-color: var(--line); }
+  .topbar-inner {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  @media (max-width: 720px) { .topbar-inner { padding: 14px 22px; } }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none;
+    color: var(--ink);
+    font-family: var(--display);
+    font-variation-settings: "wdth" 104;
+    font-weight: 700;
+    font-size: 0.98rem;
+    letter-spacing: -0.01em;
+  }
+  .brand .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex: none;
+  }
+  .js-on .brand .dot { animation: pulse 2.6s var(--ease) infinite; }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 var(--glow); }
+    50%      { box-shadow: 0 0 0 7px transparent; }
+  }
+
+  .topbar-right { display: flex; align-items: center; gap: 30px; }
+  nav.links { display: flex; gap: 26px; }
+  @media (max-width: 860px) { nav.links { display: none; } }
+  nav.links a {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink-mut);
+    position: relative;
+    padding-bottom: 3px;
+    transition: color 0.25s ease;
+  }
+  nav.links a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%; height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: 100% 50%;
+    transition: transform 0.4s var(--ease);
+  }
+  nav.links a:hover { color: var(--ink); }
+  nav.links a:hover::after { transform: scaleX(1); transform-origin: 0 50%; }
+
+  .theme-toggle {
+    flex: none;
+    width: 38px; height: 38px;
+    display: grid; place-items: center;
+    color: var(--ink-mut);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+    transition: border-color 0.25s ease, color 0.25s ease, transform 0.2s var(--ease);
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); transform: rotate(18deg); }
+  .theme-toggle:active { transform: scale(0.88); }
+  .theme-toggle svg { width: 16px; height: 16px; overflow: visible; }
+  .icon-sun, .icon-moon {
+    transform-box: fill-box; transform-origin: center;
+    transition: opacity 0.35s ease, transform 0.5s var(--ease);
+  }
+  .icon-sun  { opacity: 0; transform: rotate(-100deg) scale(0.4); }
+  .icon-moon { opacity: 0; transform: rotate(100deg) scale(0.4); }
+  :root[data-theme="dark"]  .icon-sun  { opacity: 1; transform: none; }
+  :root[data-theme="light"] .icon-moon { opacity: 1; transform: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .icon-sun { opacity: 1; transform: none; }
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .icon-moon { opacity: 1; transform: none; }
+  }
+
+  /* ============================================================
+     ENTRADA EM CASCATA (linhas mascaradas)
+     ============================================================ */
+  .lift { display: block; overflow: hidden; }
+  .lift > span { display: block; }
+  .js-on .lift > span {
+    transform: translateY(112%);
+    transition: transform 1.05s var(--ease);
+    transition-delay: var(--d, 0ms);
+  }
+  .js-on.ready .lift > span { transform: none; }
+
+  .fade { }
+  .js-on .fade {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    transition-delay: var(--d, 0ms);
+  }
+  .js-on.ready .fade { opacity: 1; transform: none; }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    position: relative;
+    padding: 96px 0 0;
+    min-height: min(88vh, 780px);
+    /* svh não muda quando a barra do navegador móvel recolhe — evita o
+       "pulo" de layout típico de vh em webview do Instagram/Safari */
+    min-height: min(88svh, 780px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @media (max-width: 720px) { .hero { padding-top: 64px; min-height: auto; } }
+
+  .hero .eyebrow { margin-bottom: 26px; }
+
+  h1.name {
+    font-size: clamp(2.6rem, 8.4vw, 6.1rem);
+    font-weight: 700;
+    font-variation-settings: "wdth" 112;
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+    margin: 0 0 30px;
+  }
+  h1.name .thin {
+    font-weight: 300;
+    font-variation-settings: "wdth" 96;
+    color: var(--ink-mut);
+  }
+
+  .role {
+    font-size: clamp(1.02rem, 1.6vw, 1.16rem);
+    color: var(--ink-mut);
+    max-width: 50ch;
+    margin: 0 0 34px;
+  }
+  .role strong { color: var(--ink); font-weight: 600; }
+
+  .contact-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .clink {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 9px 17px;
+    background: transparent;
+    background: color-mix(in srgb, var(--surface) 55%, transparent);
+    transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
+  }
+  .clink:hover { border-color: var(--accent); color: var(--accent); background: transparent; background: color-mix(in srgb, var(--accent) 8%, transparent); }
+  .clink span { display: block; transition: transform 0.45s var(--ease); }
+  .clink .ghost {
+    position: absolute;
+    inset: 9px 17px auto;
+    transform: translateY(130%);
+  }
+  .clink:hover .real  { transform: translateY(-130%); }
+  .clink:hover .ghost { transform: translateY(0); }
+
+  /* traço de onda viajante */
+  .trace-band {
+    position: relative;
+    margin-top: 58px;
+    height: 132px;
+    pointer-events: none;
+  }
+  @media (max-width: 720px) { .trace-band { height: 92px; margin-top: 40px; } }
+  .trace-band canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+  }
+  .trace-legend {
+    position: absolute;
+    left: 0; bottom: -6px;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* ============================================================
+     MARQUEE
+     ============================================================ */
+  .marquee {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    padding: 15px 0;
+    margin-top: 52px;
+    background: transparent;
+    background: color-mix(in srgb, var(--surface) 40%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 0;
+  }
+  .js-on .marquee-track { animation: slide 42s linear infinite; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+  .marquee-seq { display: flex; align-items: center; flex: none; }
+  .marquee-seq span {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.19em;
+    text-transform: uppercase;
+    color: var(--ink-mut);
+    padding: 0 26px;
+    white-space: nowrap;
+  }
+  .marquee-seq i {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex: none;
+    opacity: 0.65;
+  }
+
+  /* ============================================================
+     SEÇÕES
+     ============================================================ */
+  section.block { padding: 88px 0; }
+  @media (max-width: 720px) { section.block { padding: 62px 0; } }
+  section.block + section.block { border-top: 1px solid var(--line-soft); }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 26px;
+    margin-bottom: 42px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-head h2 {
+    font-size: clamp(1.5rem, 3.1vw, 2.1rem);
+    font-weight: 600;
+    font-variation-settings: "wdth" 106;
+  }
+  .section-idx {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--ink-dim);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .js-on [data-r] {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(5px);
+    transition: opacity 0.85s var(--ease), transform 0.85s var(--ease), filter 0.85s var(--ease);
+  }
+  .js-on .revealed [data-r] { opacity: 1; transform: none; filter: none; }
+
+  /* ---------- Perfil ---------- */
+  .profile {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 56px;
+  }
+  @media (max-width: 860px) { .profile { grid-template-columns: 1fr; gap: 36px; } }
+  .profile p {
+    margin: 0 0 18px;
+    color: var(--ink-mut);
+    font-size: 1.02rem;
+    max-width: 58ch;
+  }
+  .profile p:last-child { margin-bottom: 0; }
+  .profile strong { color: var(--ink); font-weight: 600; }
+
+  .facts { display: flex; flex-direction: column; gap: 0; }
+  .fact {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 18px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .fact:first-child { border-top: 1px solid var(--line-soft); }
+  .fact dt {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .fact dd {
+    margin: 0;
+    font-size: 0.92rem;
+    text-align: right;
+    color: var(--ink);
+  }
+
+  /* ---------- Timeline ---------- */
+  .timeline { display: flex; flex-direction: column; }
+  .entry {
+    display: grid;
+    grid-template-columns: 178px 1fr;
+    gap: 30px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--line-soft);
+    position: relative;
+  }
+  .entry:first-child { border-top: 1px solid var(--line-soft); }
+  .entry::after {
+    content: "";
+    position: absolute;
+    left: -40px; right: -40px; top: 0; bottom: 0;
+    background: var(--surface);
+    opacity: 0;
+    z-index: -1;
+    border-radius: 4px;
+    transition: opacity 0.4s ease;
+  }
+  @media (max-width: 720px) { .entry::after { left: -22px; right: -22px; } }
+  .entry:hover::after { opacity: 1; }
+  .entry time {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    padding-top: 5px;
+    font-variant-numeric: tabular-nums;
+  }
+  .entry h3 { font-size: 1.08rem; font-weight: 600; margin-bottom: 4px; font-variation-settings: "wdth" 104; }
+  .entry .org {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    color: var(--ink-dim);
+    margin-bottom: 10px;
+  }
+  .entry p { margin: 0; font-size: 0.96rem; color: var(--ink-mut); max-width: 62ch; }
+  @media (max-width: 640px) { .entry { grid-template-columns: 1fr; gap: 8px; } }
+
+  /* ---------- Acordeão (pesquisa) ---------- */
+  .acc {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--surface);
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    overflow: hidden;
+    transition: border-color 0.35s ease, background 0.35s ease;
+  }
+  .acc[data-open="true"] { border-color: var(--accent); border-color: color-mix(in srgb, var(--accent) 46%, var(--line)); background: var(--surface); }
+  .acc + .acc { margin-top: 14px; }
+
+  .acc-head {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+    padding: 26px 28px;
+    background: transparent;
+    border: 0;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+  }
+  @media (max-width: 720px) { .acc-head { padding: 20px; gap: 16px; } }
+  .acc-head .tag {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 9px;
+  }
+  .acc-head h3 {
+    font-size: clamp(1.06rem, 2.2vw, 1.34rem);
+    font-weight: 600;
+    font-variation-settings: "wdth" 104;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+  }
+  .acc-head:hover h3 { color: var(--accent); }
+  .acc-head .meta {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--ink-dim);
+  }
+  .acc-toggle {
+    flex: none;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    display: grid; place-items: center;
+    position: relative;
+    transition: background 0.35s var(--ease), border-color 0.35s ease, transform 0.45s var(--ease);
+  }
+  .acc-head:hover .acc-toggle { border-color: var(--accent); }
+  .acc[data-open="true"] .acc-toggle {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: rotate(135deg);
+  }
+  .acc-toggle::before, .acc-toggle::after {
+    content: "";
+    position: absolute;
+    background: var(--ink);
+    transition: background 0.35s ease;
+  }
+  .acc-toggle::before { width: 15px; height: 1.5px; }
+  .acc-toggle::after  { width: 1.5px; height: 15px; }
+  .acc[data-open="true"] .acc-toggle::before,
+  .acc[data-open="true"] .acc-toggle::after { background: var(--on-accent); }
+
+  .acc-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.66s var(--ease);
+  }
+  .acc[data-open="true"] .acc-panel { grid-template-rows: 1fr; }
+  .acc-inner { overflow: hidden; min-height: 0; }
+  .acc-body {
+    padding: 4px 28px 30px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease 0.12s, transform 0.5s var(--ease) 0.12s;
+  }
+  @media (max-width: 720px) { .acc-body { padding: 4px 20px 24px; } }
+  .acc[data-open="true"] .acc-body { opacity: 1; transform: none; }
+
+  .acc-body > p.lede {
+    margin: 0 0 26px;
+    color: var(--ink-mut);
+    max-width: 66ch;
+    font-size: 1rem;
+    padding-top: 20px;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    background: var(--line-soft);
+    border: 1px solid var(--line-soft);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 720px) { .stat-row { grid-template-columns: repeat(2, 1fr); } }
+  .stat { background: var(--bg); padding: 18px 16px; }
+  .stat .n {
+    display: block;
+    font-family: var(--display);
+    font-variation-settings: "wdth" 100;
+    font-size: clamp(1.5rem, 3.2vw, 1.95rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .stat .d {
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    line-height: 1.4;
+    display: block;
+  }
+
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 34px;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; gap: 26px; } }
+  .col-label {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    display: block;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  ul.plain { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+  ul.plain li {
+    font-size: 0.93rem;
+    padding-left: 19px;
+    position: relative;
+    color: var(--ink-mut);
+    line-height: 1.55;
+  }
+  ul.plain li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.6em;
+    width: 7px; height: 1.5px;
+    background: var(--accent);
+  }
+  ul.plain li b { color: var(--ink); font-weight: 600; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 6px 11px;
+    color: var(--ink-mut);
+    white-space: nowrap;
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--ink); }
+
+  .acc-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--on-accent);
+    background: var(--accent);
+    padding: 13px 22px;
+    border-radius: 4px;
+    transition: background 0.25s ease;
+    will-change: transform;
+  }
+  .cta:hover { background: var(--accent-hi); }
+  .cta .arw { display: inline-block; transition: transform 0.35s var(--ease); }
+  .cta:hover .arw { transform: translateX(4px); }
+
+  /* ---------- Skills ---------- */
+  .skill-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 34px 54px;
+  }
+  @media (max-width: 720px) { .skill-grid { grid-template-columns: 1fr; gap: 26px; } }
+
+  /* ---------- Footer ---------- */
+  footer.block { padding: 88px 0 76px; border-top: 1px solid var(--line-soft); }
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 40px;
+  }
+  @media (max-width: 720px) { .foot-grid { grid-template-columns: 1fr; gap: 30px; } }
+  footer h2 {
+    font-size: clamp(2rem, 5.4vw, 3.2rem);
+    font-weight: 700;
+    font-variation-settings: "wdth" 110;
+    letter-spacing: -0.032em;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  footer p.lead { color: var(--ink-mut); max-width: 42ch; margin: 0; }
+  .foot-links { display: flex; flex-direction: column; gap: 10px; text-align: right; }
+  @media (max-width: 720px) { .foot-links { text-align: left; } }
+  .flink {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: var(--ink);
+    transition: color 0.3s ease;
+  }
+  .flink:hover { color: var(--accent); }
+  .flink span { display: block; transition: transform 0.42s var(--ease); }
+  .flink .ghost { position: absolute; left: 0; right: 0; top: 0; transform: translateY(120%); }
+  @media (max-width: 720px) { .flink .ghost { right: auto; } }
+  .flink:hover .real  { transform: translateY(-120%); }
+  .flink:hover .ghost { transform: translateY(0); }
+
+  .fine {
+    margin-top: 56px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line-soft);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* ============================================================
+     MOVIMENTO REDUZIDO
+     ============================================================ */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js-on .lift > span,
+    .js-on .fade,
+    .js-on [data-r] { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
+    .js-on .marquee-track { animation: none; }
+    .js-on .brand .dot { animation: none; }
+    .acc-panel { transition: none; }
+    .acc-body { transition: none; }
+    * { scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="cursor-glow" id="glow" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<div class="layer">
+
+<header class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>André Luís</a>
+    <div class="topbar-right">
+      <nav class="links">
+        <a href="#perfil">Perfil</a>
+        <a href="#experiencia">Experiência</a>
+        <a href="#pesquisa">Pesquisa</a>
+        <a href="#formacao">Formação</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar entre tema claro e escuro">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <g class="icon-sun" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"></circle>
+            <line x1="12" y1="1.6" x2="12" y2="4.1"></line>
+            <line x1="12" y1="19.9" x2="12" y2="22.4"></line>
+            <line x1="1.6" y1="12" x2="4.1" y2="12"></line>
+            <line x1="19.9" y1="12" x2="22.4" y2="12"></line>
+            <line x1="4.5" y1="4.5" x2="6.3" y2="6.3"></line>
+            <line x1="17.7" y1="17.7" x2="19.5" y2="19.5"></line>
+            <line x1="4.5" y1="19.5" x2="6.3" y2="17.7"></line>
+            <line x1="17.7" y1="6.3" x2="19.5" y2="4.5"></line>
+          </g>
+          <path class="icon-moon" d="M20 14.2A8.6 8.6 0 0 1 9.8 4a8.6 8.6 0 1 0 10.2 10.2Z" fill="currentColor"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <span class="eyebrow fade" style="--d:80ms">Engenharia Elétrica · Sistemas de potência · UFPI</span>
+      </div>
+
+      <h1 class="name">
+        <span class="lift"><span style="--d:140ms">André Luís</span></span>
+        <span class="lift"><span class="thin" style="--d:230ms">Alves Carvalho</span></span>
+      </h1>
+
+      <p class="role fade" style="--d:400ms">
+        Engenharia Elétrica na <strong>UFPI</strong> — sistemas de potência, proteção de linhas de transmissão
+        e modelagem computacional de redes. Trabalho na fronteira entre a engenharia clássica de proteção
+        e os métodos computacionais que estão redefinindo ela.
+      </p>
+
+      <div class="contact-row fade" style="--d:490ms">
+        <a class="clink" href="mailto:andreluis.alvescarvalho125@gmail.com"><span class="real">Email</span><span class="ghost" aria-hidden="true">Email</span></a>
+        <a class="clink" href="https://github.com/andrelsrv" target="_blank" rel="noopener"><span class="real">GitHub</span><span class="ghost" aria-hidden="true">GitHub</span></a>
+        <a class="clink" href="https://linkedin.com/in/enginnerandrel/" target="_blank" rel="noopener"><span class="real">LinkedIn</span><span class="ghost" aria-hidden="true">LinkedIn</span></a>
+        <a class="clink" href="https://instagram.com/andrelsrv" target="_blank" rel="noopener"><span class="real">Instagram</span><span class="ghost" aria-hidden="true">Instagram</span></a>
+      </div>
+
+      <div class="trace-band fade" style="--d:620ms">
+        <canvas id="trace" aria-hidden="true"></canvas>
+        <span class="trace-legend">Transitório eletromagnético · onda incidente e reflexão</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="marquee-seq">
+        <span>Sistemas de potência</span><i></i>
+        <span>Proteção de linhas</span><i></i>
+        <span>ATP / ATPDraw</span><i></i>
+        <span>Transitórios eletromagnéticos</span><i></i>
+        <span>Smart Grid</span><i></i>
+        <span>Processamento de sinais</span><i></i>
+        <span>Machine learning aplicado</span><i></i>
+        <span>Python</span><i></i>
+      </div>
+      <div class="marquee-seq">
+        <span>Sistemas de potência</span><i></i>
+        <span>Proteção de linhas</span><i></i>
+        <span>ATP / ATPDraw</span><i></i>
+        <span>Transitórios eletromagnéticos</span><i></i>
+        <span>Smart Grid</span><i></i>
+        <span>Processamento de sinais</span><i></i>
+        <span>Machine learning aplicado</span><i></i>
+        <span>Python</span><i></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- 01 PERFIL -->
+    <section class="block reveal" id="perfil">
+      <div class="section-head">
+        <h2 data-r>Perfil</h2>
+        <span class="section-idx" data-r>01 / 05</span>
+      </div>
+      <div class="profile">
+        <div>
+          <p data-r>
+            Sou estudante de Engenharia Elétrica na Universidade Federal do Piauí, com formação prevista
+            para 2027. Meu interesse está em <strong>sistemas de potência</strong> — especificamente na
+            interseção entre a modelagem física rigorosa de uma rede elétrica e as ferramentas
+            computacionais capazes de extrair decisões confiáveis dela.
+          </p>
+          <p data-r>
+            Na prática, isso significa transitar entre a bancada e o código: modelar linhas de transmissão
+            em simuladores de transitórios eletromagnéticos, processar oscilografias, e construir software
+            que outras pessoas consigam de fato usar. Prezo por <strong>validação honesta</strong> —
+            resultado que não sobrevive a um teste independente não é resultado.
+          </p>
+          <p data-r>
+            Fora da pesquisa, também atuo com infraestrutura técnica e transmissão ao vivo em projeto
+            comunitário, o que me ensinou bastante sobre fazer sistema funcionar com o que se tem em mãos.
+          </p>
+        </div>
+        <dl class="facts" data-r>
+          <div class="fact"><dt>Localização</dt><dd>Teresina, Piauí — Brasil</dd></div>
+          <div class="fact"><dt>Formação</dt><dd>Eng. Elétrica · UFPI · 2022–2027</dd></div>
+          <div class="fact"><dt>Vínculo atual</dt><dd>Bolsista PIBIC / CNPq</dd></div>
+          <div class="fact"><dt>Idiomas</dt><dd>Português · Inglês intermediário</dd></div>
+          <div class="fact"><dt>Ferramentas</dt><dd>Python · MATLAB · ATPDraw</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 02 EXPERIÊNCIA -->
+    <section class="block reveal" id="experiencia">
+      <div class="section-head">
+        <h2 data-r>Experiência</h2>
+        <span class="section-idx" data-r>02 / 05</span>
+      </div>
+      <div class="timeline">
+        <div class="entry" data-r>
+          <time>jan 2025 — ago 2026</time>
+          <div>
+            <h3>Bolsista de Iniciação Científica (PIBIC)</h3>
+            <span class="org">Universidade Federal do Piauí</span>
+            <p>Modelagem computacional de linhas de transmissão em contexto de Smart Grid e geração
+            distribuída, com desenvolvimento de algoritmos de detecção, classificação e localização de
+            faltas. Orientação do Prof. Aryfrance Rocha Almeida.</p>
+          </div>
+        </div>
+        <div class="entry" data-r>
+          <time>mai 2025 — fev 2026</time>
+          <div>
+            <h3>Bolsista de Pesquisa de Pós-Graduação</h3>
+            <span class="org">ANEER / UFPI</span>
+            <p>Desenvolvimento de modelos computacionais para Smart Grid em parceria com a Agência
+            Nacional de Eficiência Energética e Renováveis.</p>
+          </div>
+        </div>
+        <div class="entry" data-r>
+          <time>voluntário</time>
+          <div>
+            <h3>Assistente Técnico</h3>
+            <span class="org">Rádio comunitária</span>
+            <p>Suporte técnico e manutenção de infraestrutura, configuração de equipamentos de áudio e
+            operação de transmissão ao vivo via OBS Studio.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 PESQUISA -->
+    <section class="block reveal" id="pesquisa">
+      <div class="section-head">
+        <h2 data-r>Pesquisa &amp; projetos</h2>
+        <span class="section-idx" data-r>03 / 05</span>
+      </div>
+
+      <div class="acc" data-open="false" data-r>
+        <button class="acc-head" type="button" aria-expanded="false" aria-controls="acc-pibic" id="accBtn">
+          <div>
+            <span class="tag">Iniciação Científica · PIBIC / CNPq</span>
+            <h3>Classificador e Localizador de Faltas em Linhas de Transmissão</h3>
+            <span class="meta">2025 — 2026 · Python · ATP/ATPDraw · scikit-learn</span>
+          </div>
+          <span class="acc-toggle" aria-hidden="true"></span>
+        </button>
+
+        <div class="acc-panel" id="acc-pibic" role="region" aria-labelledby="accBtn">
+          <div class="acc-inner">
+            <div class="acc-body">
+              <p class="lede">
+                Pipeline completo de detecção, classificação e localização de faltas elétricas a partir de
+                oscilografias geradas no ATP/ATPDraw. Combina extração de atributos físicos do sinal com
+                aprendizado de máquina supervisionado, entregue como aplicativo desktop autônomo que
+                recebe o arquivo de simulação e devolve tipo de falta, distância e confiança.
+              </p>
+
+              <div class="stat-row" id="statRow">
+                <div class="stat">
+                  <span class="n" data-count="99.64" data-dec="2" data-suffix="%">99,64%</span>
+                  <span class="d">Acurácia de<br>classificação</span>
+                </div>
+                <div class="stat">
+                  <span class="n" data-count="0.55" data-dec="2" data-suffix=" km">0,55 km</span>
+                  <span class="d">Erro médio de<br>localização</span>
+                </div>
+                <div class="stat">
+                  <span class="n" data-count="1650" data-dec="0">1.650</span>
+                  <span class="d">Simulações reais<br>na validação final</span>
+                </div>
+                <div class="stat">
+                  <span class="n" data-count="10" data-dec="0">10</span>
+                  <span class="d">Classes de<br>falta</span>
+                </div>
+              </div>
+
+              <div class="cols">
+                <div>
+                  <span class="col-label">Arquitetura</span>
+                  <ul class="plain">
+                    <li>Detecção do evento por <b>limiar adaptativo</b> (mediana e desvio absoluto do sinal pré-falta), sem instante fixo pré-configurado.</li>
+                    <li>Extração de <b>71 atributos físicos</b> — RMS, componentes simétricas e a transformação modal real da linha, derivada da geometria dos condutores.</li>
+                    <li>Classificação em dois estágios: <b>RandomForest</b> de 10 classes seguido de quatro especialistas binários para os pares mais difíceis.</li>
+                    <li>Localização por <b>correlação de ondas viajantes</b> com verificação cruzada entre os dois terminais de medição.</li>
+                    <li>Checagem de sanidade independente por regressor de atenuação — em caso de discordância, o sistema recusa responder em vez de errar.</li>
+                  </ul>
+                </div>
+                <div>
+                  <span class="col-label">Validação</span>
+                  <ul class="plain">
+                    <li>Bateria final com <b>1.650 simulações reais</b> do ATPDraw, distribuídas entre 10 classes e 11 linhas físicas distintas.</li>
+                    <li>Protocolo <b>leave-one-line-out</b>: 99,33% de acurácia em linhas físicas nunca vistas em nenhuma etapa do treinamento.</li>
+                    <li><b>Zero</b> distâncias fisicamente impossíveis previstas e 0,55% de erro silencioso agregado.</li>
+                    <li>92,76% de localização conclusiva — o restante é recusa deliberada, não erro.</li>
+                    <li>Suíte de <b>51 testes automatizados</b>, todos passando, cobrindo o pipeline de ponta a ponta.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div style="margin-bottom:26px">
+                <span class="col-label">Stack</span>
+                <div class="chips">
+                  <span class="chip">Python</span>
+                  <span class="chip">scikit-learn</span>
+                  <span class="chip">NumPy / SciPy</span>
+                  <span class="chip">ATP / ATPDraw</span>
+                  <span class="chip">Tkinter</span>
+                  <span class="chip">PyInstaller</span>
+                  <span class="chip">Streamlit</span>
+                </div>
+              </div>
+
+              <div class="acc-foot">
+                <a class="cta" id="repoCta" href="https://github.com/andrelsrv/IniciacaoCientifica-UFPI" target="_blank" rel="noopener">
+                  Ver repositório <span class="arw" aria-hidden="true">→</span>
+                </a>
+                <span class="mono" style="color:var(--ink-dim)">Escopo validado · 200 km · Rfault 0–300 Ω · ângulo 0–360°</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc" data-open="false" data-r>
+        <button class="acc-head" type="button" aria-expanded="false" aria-controls="acc-braco">
+          <div>
+            <span class="tag">Projeto pessoal · Sistemas embarcados</span>
+            <h3>Braço Robótico ESP32 — 4 graus de liberdade</h3>
+            <span class="meta">C++ · PlatformIO · ESP32 · Wi-Fi</span>
+          </div>
+          <span class="acc-toggle" aria-hidden="true"></span>
+        </button>
+
+        <div class="acc-panel" id="acc-braco" role="region">
+          <div class="acc-inner">
+            <div class="acc-body">
+              <p class="lede">
+                Braço robótico de 4 graus de liberdade controlado por Wi-Fi, com o ESP32 atuando
+                simultaneamente como ponto de acesso e servidor web. O controle é feito por uma
+                interface responsiva aberta direto no navegador do celular — sem aplicativo, sem
+                roteador e sem depender de rede externa.
+              </p>
+
+              <div class="cols">
+                <div>
+                  <span class="col-label">O que faz</span>
+                  <ul class="plain">
+                    <li>O ESP32 sobe a própria rede em <b>modo Access Point</b> — funciona em qualquer lugar, sem infraestrutura.</li>
+                    <li>Interface web com controles para os três eixos do braço e acionamento da garra.</li>
+                    <li><b>Interpolação de movimento</b> entre a posição atual e a alvo, eliminando os saltos bruscos típicos de comando direto de servo.</li>
+                    <li>Leitura em tempo real dos ângulos de cada junta na própria página, usada para calibração.</li>
+                  </ul>
+                </div>
+                <div>
+                  <span class="col-label">Engenharia</span>
+                  <ul class="plain">
+                    <li>Portado de uma placa Xiao ESP32S3 para <b>ESP32 DevKit</b> comum, com remapeamento de pinos e ajuste de PWM.</li>
+                    <li>Alimentação dos servos isolada em fonte externa de 5 V — pelo regulador da placa, a queda de tensão sob carga reinicia o microcontrolador.</li>
+                    <li>Circuito completo versionado para simulação no <b>Wokwi</b>, permitindo validar o firmware sem hardware em mãos.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div style="margin-bottom:26px">
+                <span class="col-label">Stack</span>
+                <div class="chips">
+                  <span class="chip">C++</span>
+                  <span class="chip">ESP32</span>
+                  <span class="chip">PlatformIO</span>
+                  <span class="chip">Servomotores</span>
+                  <span class="chip">HTTP / Wi-Fi AP</span>
+                  <span class="chip">Wokwi</span>
+                </div>
+              </div>
+
+              <div class="acc-foot">
+                <a class="cta" href="https://github.com/andrelsrv/robot-arm-esp32" target="_blank" rel="noopener">
+                  Ver repositório <span class="arw" aria-hidden="true">→</span>
+                </a>
+                <span class="mono" style="color:var(--ink-dim)">4 servos · 3 eixos + garra · controle via navegador</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 FORMAÇÃO -->
+    <section class="block reveal" id="formacao">
+      <div class="section-head">
+        <h2 data-r>Formação &amp; competências</h2>
+        <span class="section-idx" data-r>04 / 05</span>
+      </div>
+
+      <div class="timeline" style="margin-bottom:44px">
+        <div class="entry" data-r>
+          <time>out 2022 — out 2027</time>
+          <div>
+            <h3>Bacharelado em Engenharia Elétrica</h3>
+            <span class="org">Universidade Federal do Piauí</span>
+            <p>Ênfase em sistemas de potência, eletrônica de potência e modelagem computacional de redes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-grid">
+        <div data-r>
+          <span class="col-label">Programação</span>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">C / C++</span>
+            <span class="chip">MATLAB</span>
+          </div>
+        </div>
+        <div data-r>
+          <span class="col-label">Software de engenharia</span>
+          <div class="chips">
+            <span class="chip">ATP / ATPDraw</span>
+            <span class="chip">MATLAB / Simulink</span>
+          </div>
+        </div>
+        <div data-r>
+          <span class="col-label">Domínio técnico</span>
+          <div class="chips">
+            <span class="chip">Análise de sistemas de potência</span>
+            <span class="chip">Proteção de linhas</span>
+            <span class="chip">Eletrônica de potência</span>
+            <span class="chip">Modelagem Smart Grid</span>
+            <span class="chip">Machine learning aplicado</span>
+          </div>
+        </div>
+        <div data-r>
+          <span class="col-label">Cursos &amp; eventos</span>
+          <ul class="plain">
+            <li>CONEEL 2025 — Congresso de Estudantes de Engenharia Elétrica</li>
+            <li>Minicurso MATLAB — Conceitos Básicos em Sistemas de Controle</li>
+            <li>Microsoft Excel 2016 — Básico e Intermediário</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- 05 CONTATO -->
+  <footer class="block reveal" id="contato">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 data-r style="font-size:clamp(1.5rem,3.1vw,2.1rem);font-weight:600">Contato</h2>
+        <span class="section-idx" data-r>05 / 05</span>
+      </div>
+      <div class="foot-grid">
+        <div>
+          <h2 data-r>Vamos<br>conversar?</h2>
+          <p class="lead" data-r>Aberto a oportunidades em sistemas de potência, automação e pesquisa aplicada — e a conversas técnicas em geral.</p>
+        </div>
+        <div class="foot-links" data-r>
+          <a class="flink" href="mailto:andreluis.alvescarvalho125@gmail.com"><span class="real">andreluis.alvescarvalho125@gmail.com</span><span class="ghost" aria-hidden="true">andreluis.alvescarvalho125@gmail.com</span></a>
+          <a class="flink" href="https://github.com/andrelsrv" target="_blank" rel="noopener"><span class="real">github.com/andrelsrv</span><span class="ghost" aria-hidden="true">github.com/andrelsrv</span></a>
+          <a class="flink" href="https://linkedin.com/in/enginnerandrel/" target="_blank" rel="noopener"><span class="real">linkedin.com/in/enginnerandrel</span><span class="ghost" aria-hidden="true">linkedin.com/in/enginnerandrel</span></a>
+          <a class="flink" href="https://instagram.com/andrelsrv" target="_blank" rel="noopener"><span class="real">instagram.com/andrelsrv</span><span class="ghost" aria-hidden="true">instagram.com/andrelsrv</span></a>
+        </div>
+      </div>
+      <div class="fine">
+        <span>André Luís Alves Carvalho</span>
+        <span>Teresina · Piauí · Brasil</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var root = document.documentElement;
+  root.classList.add("js-on");
+
+  var reduce = false;
+  try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
+
+  /* ---------- tema ---------- */
+  var KEY = "theme-pref";
+  function applyTheme(pref) {
+    if (pref === "light" || pref === "dark") root.setAttribute("data-theme", pref);
+    else root.removeAttribute("data-theme");
+  }
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  applyTheme(saved);
+
+  var toggle = document.getElementById("themeToggle");
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      var cur = root.getAttribute("data-theme");
+      var prefersDark = false;
+      try { prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches; } catch (e) {}
+      var isDark = cur === "dark" || (!cur && prefersDark);
+      var next = isDark ? "light" : "dark";
+      applyTheme(next);
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+      drawTrace(true);
+    });
+  }
+
+  /* ---------- entrada em cascata ---------- */
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { root.classList.add("ready"); });
+  });
+  // fallback: se o rAF estiver congelado, o hero não pode ficar invisível
+  setTimeout(function () { root.classList.add("ready"); }, 500);
+
+  /* ---------- progresso de rolagem + topo grudado ---------- */
+  var bar = document.getElementById("progress");
+  var topbar = document.getElementById("topbar");
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      var p = h > 0 ? Math.min(1, Math.max(0, window.scrollY / h)) : 0;
+      if (bar) bar.style.transform = "scaleX(" + p + ")";
+      if (topbar) topbar.classList.toggle("stuck", window.scrollY > 12);
+      ticking = false;
+    });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- brilho do cursor ---------- */
+  var glow = document.getElementById("glow");
+  if (glow && !reduce) {
+    var gx = window.innerWidth / 2, gy = window.innerHeight / 2;
+    var tx = gx, ty = gy, running = false;
+    function loop() {
+      gx += (tx - gx) * 0.12;
+      gy += (ty - gy) * 0.12;
+      glow.style.transform = "translate3d(" + gx + "px," + gy + "px,0)";
+      if (Math.abs(tx - gx) > 0.4 || Math.abs(ty - gy) > 0.4) requestAnimationFrame(loop);
+      else running = false;
+    }
+    window.addEventListener("pointermove", function (e) {
+      if (e.pointerType === "touch") return;
+      tx = e.clientX; ty = e.clientY;
+      glow.classList.add("live");
+      if (!running) { running = true; requestAnimationFrame(loop); }
+    }, { passive: true });
+  }
+
+  /* ---------- revelação por rolagem ---------- */
+  var sections = document.querySelectorAll(".reveal");
+  sections.forEach(function (sec) {
+    var kids = sec.querySelectorAll("[data-r]");
+    for (var i = 0; i < kids.length; i++) {
+      kids[i].style.transitionDelay = Math.min(i * 75, 520) + "ms";
+    }
+  });
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("revealed"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -60px 0px" });
+    sections.forEach(function (s) { io.observe(s); });
+  } else {
+    sections.forEach(function (s) { s.classList.add("revealed"); });
+  }
+
+  // Rede de segurança: se o observer nunca disparar (aba em segundo plano,
+  // captura de miniatura, navegador que congela o ciclo de render), o
+  // conteúdo ficaria preso em opacity:0 para sempre. Esta checagem roda
+  // direto no listener de scroll — fora do rAF, de propósito — e custa
+  // cinco getBoundingClientRect por evento.
+  function revealInView() {
+    for (var i = 0; i < sections.length; i++) {
+      var s = sections[i];
+      if (s.classList.contains("revealed")) continue;
+      var r = s.getBoundingClientRect();
+      if (r.top < window.innerHeight - 40 && r.bottom > 0) s.classList.add("revealed");
+    }
+  }
+  window.addEventListener("scroll", revealInView, { passive: true });
+  window.addEventListener("resize", revealInView, { passive: true });
+  setTimeout(revealInView, 1200);
+
+  /* ---------- acordeões ---------- */
+  document.querySelectorAll(".acc-head").forEach(function (btn) {
+    var acc = btn.closest(".acc");
+    if (!acc) return;
+    btn.addEventListener("click", function () {
+      var open = acc.getAttribute("data-open") === "true";
+      acc.setAttribute("data-open", open ? "false" : "true");
+      btn.setAttribute("aria-expanded", open ? "false" : "true");
+      if (!open) {
+        countUp();
+        if (!reduce) {
+          setTimeout(function () {
+            var r = acc.getBoundingClientRect();
+            if (r.top < 0) window.scrollTo({ top: window.scrollY + r.top - 90, behavior: "smooth" });
+          }, 120);
+        }
+      }
+    });
+  });
+
+  /* ---------- contadores ---------- */
+  var counted = false;
+  function fmt(v, dec) {
+    var s = v.toFixed(dec);
+    var parts = s.split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return parts.join(",");
+  }
+  function countUp() {
+    if (counted) return;
+    counted = true;
+    var nodes = document.querySelectorAll("#statRow .n");
+    nodes.forEach(function (el, idx) {
+      var target = parseFloat(el.dataset.count);
+      var dec = parseInt(el.dataset.dec, 10) || 0;
+      var suffix = el.dataset.suffix || "";
+      if (reduce) { el.textContent = fmt(target, dec) + suffix; return; }
+      var dur = 1150, start = null, delay = idx * 90;
+      setTimeout(function () {
+        function step(ts) {
+          if (start === null) start = ts;
+          var t = Math.min(1, (ts - start) / dur);
+          var e = 1 - Math.pow(1 - t, 3);
+          el.textContent = fmt(target * e, dec) + suffix;
+          if (t < 1) requestAnimationFrame(step);
+          else el.textContent = fmt(target, dec) + suffix;
+        }
+        requestAnimationFrame(step);
+      }, delay);
+    });
+  }
+
+  /* ---------- botões magnéticos ---------- */
+  if (!reduce) {
+    document.querySelectorAll(".cta").forEach(function (cta) {
+      cta.addEventListener("pointermove", function (e) {
+        if (e.pointerType === "touch") return;
+        var r = cta.getBoundingClientRect();
+        var dx = (e.clientX - (r.left + r.width / 2)) * 0.22;
+        var dy = (e.clientY - (r.top + r.height / 2)) * 0.32;
+        cta.style.transform = "translate(" + dx + "px," + dy + "px)";
+      });
+      cta.addEventListener("pointerleave", function () {
+        cta.style.transition = "transform 0.5s cubic-bezier(0.16,1,0.3,1), background 0.25s ease";
+        cta.style.transform = "";
+        setTimeout(function () { cta.style.transition = "background 0.25s ease"; }, 520);
+      });
+    });
+  }
+
+  /* ---------- navegação suave ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      var id = link.getAttribute("href").slice(1);
+      var target = id ? document.getElementById(id) : null;
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      try { history.replaceState(null, "", link.getAttribute("href")); } catch (err) {}
+    });
+  });
+
+  /* ---------- traço de onda viajante ---------- */
+  var cv = document.getElementById("trace");
+  var ctx = cv && cv.getContext ? cv.getContext("2d") : null;
+  var W = 0, H = 0, dpr = 1, phase = 0, rafId = 0;
+
+  function accentColor() {
+    var v = getComputedStyle(root).getPropertyValue("--trace").trim();
+    return v || "rgba(255,166,41,0.6)";
+  }
+  function dimColor() {
+    var v = getComputedStyle(root).getPropertyValue("--line").trim();
+    return v || "#222c37";
+  }
+
+  function sizeCanvas() {
+    if (!cv) return;
+    var r = cv.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = Math.max(1, Math.round(r.width));
+    H = Math.max(1, Math.round(r.height));
+    cv.width = W * dpr;
+    cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function drawTrace(once) {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, W, H);
+    var mid = H * 0.55;
+
+    // linha de base
+    ctx.strokeStyle = dimColor();
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, mid);
+    ctx.lineTo(W, mid);
+    ctx.stroke();
+
+    var acc = accentColor();
+
+    // traço principal: portadora + pacote transitório viajante
+    ctx.strokeStyle = acc;
+    ctx.lineWidth = 1.6;
+    ctx.lineJoin = "round";
+    ctx.beginPath();
+    var pulseX = ((phase * 0.9) % 1.32) * W - W * 0.16;
+    for (var x = 0; x <= W; x += 2) {
+      var t = x / W;
+      var carrier = Math.sin(t * 7.4 + phase * 1.5) * (H * 0.085);
+      var d = (x - pulseX) / (W * 0.055);
+      var env = Math.exp(-d * d);
+      var burst = Math.sin((x - pulseX) * 0.55) * env * (H * 0.3);
+      var y = mid + carrier + burst;
+      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    // eco atenuado (reflexão)
+    ctx.strokeStyle = acc;
+    ctx.globalAlpha = 0.3;
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    var echoX = pulseX - W * 0.42;
+    for (var x2 = 0; x2 <= W; x2 += 2) {
+      var t2 = x2 / W;
+      var carrier2 = Math.sin(t2 * 7.4 + phase * 1.5 + 0.9) * (H * 0.05);
+      var d2 = (x2 - echoX) / (W * 0.05);
+      var env2 = Math.exp(-d2 * d2);
+      var burst2 = Math.sin((x2 - echoX) * 0.5) * env2 * (H * 0.13);
+      var y2 = mid + carrier2 + burst2;
+      if (x2 === 0) ctx.moveTo(x2, y2); else ctx.lineTo(x2, y2);
+    }
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+
+    if (once) return;
+    phase += 0.011;
+    rafId = requestAnimationFrame(function () { drawTrace(false); });
+  }
+
+  if (ctx) {
+    sizeCanvas();
+    // desenha sempre um quadro estático primeiro: se o rAF estiver
+    // congelado, o traço aparece mesmo assim em vez de ficar em branco
+    phase = 1.15;
+    drawTrace(true);
+    if (!reduce) drawTrace(false);
+    var rt;
+    window.addEventListener("resize", function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () { sizeCanvas(); if (reduce) drawTrace(true); }, 160);
+    });
+    document.addEventListener("visibilitychange", function () {
+      if (reduce) return;
+      if (document.hidden) { cancelAnimationFrame(rafId); }
+      else { cancelAnimationFrame(rafId); drawTrace(false); }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
