@@ -68,7 +68,6 @@ Acessos a partir de `localhost` são ignorados pelo GoatCounter.
 | `evento/contato/github` · `linkedin` · `instagram` | Clique nos ícones sociais |
 | `evento/contato/compartilhar` | Botão Compartilhar / Copiar link |
 | `evento/repo/classificador-faltas` | “Ver repositório” do Classificador de Faltas |
-| `evento/repo/braco-robotico` | “Ver repositório” do Braço Robótico |
 | `evento/scroll/25` · `50` · `75` · `100` | Profundidade de rolagem (uma vez cada) |
 | `evento/secao/perfil` · `experiencia` · `pesquisa` · `formacao` · `contato` | Seção vista (uma vez cada) — compare os totais para ver a mais visitada |
 | `evento/tema/claro` · `escuro` | Troca manual de tema |

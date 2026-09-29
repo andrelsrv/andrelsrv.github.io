@@ -55,7 +55,7 @@
 <style>
 /* ============ Tokens ============ */
 :root{
-  --bg:#fbfbfd; --bg-alt:#f5f5f7; --surface:#ffffff; --surface-2:#f5f5f7;
+  --bg:#fbfbfd; --bg-alt:#f5f5f7; --inset:#ebebf0; --surface:#ffffff; --surface-2:#f5f5f7;
   --text:#1d1d1f; --text-2:#6e6e73; --line:#d2d2d7;
   --accent:#0066cc; --btn:#0071e3; --btn-text:#fff;
   --nav-bg:rgba(251,251,253,.72); --nav-solid:#fbfbfd;
@@ -78,14 +78,14 @@
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#000; --bg-alt:#0a0a0a; --surface:#1c1c1e; --surface-2:#2c2c2e;
+    --bg:#000; --bg-alt:#0a0a0a; --inset:#2c2c2e; --surface:#1c1c1e; --surface-2:#2c2c2e;
     --text:#f5f5f7; --text-2:#a1a1a6; --line:#38383a; --accent:#2997ff;
     --nav-bg:rgba(10,10,10,.72); --nav-solid:#0a0a0a;
     --shadow:none; --grad:linear-gradient(180deg,#f5f5f7 30%,#a1a1a6);
   }
 }
 :root[data-theme="dark"]{
-  --bg:#000; --bg-alt:#0a0a0a; --surface:#1c1c1e; --surface-2:#2c2c2e;
+  --bg:#000; --bg-alt:#0a0a0a; --inset:#2c2c2e; --surface:#1c1c1e; --surface-2:#2c2c2e;
   --text:#f5f5f7; --text-2:#a1a1a6; --line:#38383a; --accent:#2997ff;
   --nav-bg:rgba(10,10,10,.72); --nav-solid:#0a0a0a;
   --shadow:none; --grad:linear-gradient(180deg,#f5f5f7 30%,#a1a1a6);
@@ -249,21 +249,30 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
 .stack{margin-top:48px;text-align:center}
 .stack .chips{justify-content:center}
 
-/* Braço robótico */
+/* Card da segunda pesquisa */
 .card{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden;margin-top:clamp(88px,12vw,140px);display:grid}
-.card-art{background:var(--bg-alt);display:grid;place-items:center;padding:28px 20px}
-.card-art svg{width:min(280px,80%);height:auto;color:var(--text)}
+.card-art{background:var(--inset);display:flex;flex-direction:column;justify-content:center;gap:28px;padding:36px 24px}
+.spec{display:flex;align-items:flex-end;gap:14px}
+.spec-n{font-size:clamp(6rem,30vw,10rem);font-weight:700;line-height:.8;letter-spacing:-.06em;
+  color:var(--text);background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.spec-l{font-size:clamp(1.25rem,5vw,1.625rem);font-weight:600;line-height:1.1;letter-spacing:-.02em;max-width:6ch;padding-bottom:.2em}
+.spec-list{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;font-size:var(--fs-sm);color:var(--text)}
+.spec-list b{font-size:1.5rem;font-weight:650;letter-spacing:-.02em;color:var(--text);margin-right:4px;font-variant-numeric:tabular-nums}
+.spec-web{grid-column:span 2;display:flex;align-items:center;gap:8px;padding-top:12px;border-top:1px solid var(--line)}
+.badge{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:var(--fs-xs);font-weight:600;color:var(--text);padding:6px 12px;border-radius:var(--pill);background:var(--surface)}
+.badge::before{content:"";width:7px;height:7px;border-radius:50%;background:#30d158}
+.road{margin-top:28px;display:grid;gap:0}
+.road li{display:grid;gap:2px;padding:14px 0;border-top:1px solid var(--line)}
+.road li:first-child{border-top:0;padding-top:0}
+.road time{font-size:var(--fs-xs);font-weight:600;color:var(--text-2);font-variant-numeric:tabular-nums}
+.road span{font-size:1.0625rem;color:var(--text)}
+.card-body .chips{margin-top:24px}
+.fine-note{font-size:var(--fs-sm);color:var(--text-2);margin-top:16px;line-height:1.5}
+.spec-web::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
 .card-body{padding:30px 22px 32px}
 .card-body .h3{margin-top:4px}
 .card-body .lede{max-width:none}
 .cols{display:grid;gap:8px;margin-top:24px}
-.arm-j{transform-box:fill-box}
-@media (prefers-reduced-motion:no-preference){
-  .arm-a{animation:swing 7s var(--ease) infinite alternate;transform-origin:120px 186px}
-  .arm-b{animation:swing2 7s var(--ease) infinite alternate;transform-origin:170px 110px}
-}
-@keyframes swing{from{transform:rotate(-4deg)}to{transform:rotate(5deg)}}
-@keyframes swing2{from{transform:rotate(6deg)}to{transform:rotate(-8deg)}}
 
 /* ============ Competências ============ */
 .skills{display:grid;gap:12px;margin-top:40px}
@@ -330,7 +339,9 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
   .tile{padding:30px 28px}
   .panel{padding:40px}
   .card{grid-template-columns:5fr 7fr}
-  .card-art{padding:40px}
+  .card-art{padding:48px 40px}
+  .spec-list{grid-template-columns:1fr}
+  .spec-web{grid-column:auto}
   .card-body{padding:48px 44px}
   .tl{padding-left:0}
   .tl::before{left:calc(170px + 23px)}
@@ -422,7 +433,7 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
       <dl class="bento">
         <div class="tile wide r"><dt>Formação</dt><dd>Eng. Elétrica · UFPI · 2022–2027</dd></div>
         <div class="tile r" style="--i:1"><dt>Localização</dt><dd>Teresina, Piauí — Brasil</dd></div>
-        <div class="tile r" style="--i:2"><dt>Vínculo atual</dt><dd>Bolsista PIBIC / CNPq</dd></div>
+        <div class="tile r" style="--i:2"><dt>Vínculo atual</dt><dd>Iniciação Científica · ICV / UFPI</dd></div>
         <div class="tile r" style="--i:3"><dt>Idiomas</dt><dd>Português · Inglês intermediário</dd></div>
         <div class="tile r" style="--i:4"><dt>Ferramentas</dt><dd>Python · MATLAB · ATPDraw</dd></div>
       </dl>
@@ -435,6 +446,14 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
       <span class="eyebrow r">Experiência</span>
       <h2 class="h2 r" id="h-exp">Pesquisa aplicada, do modelo ao campo.</h2>
       <ol class="tl">
+        <li class="r">
+          <time>set 2026 — ago 2027</time>
+          <div>
+            <h3>Iniciação Científica Voluntária (ICV)</h3>
+            <span class="org">Universidade Federal do Piauí</span>
+            <p>Detecção, localização e classificação de faltas em linhas de transmissão de sistemas híbridos com BESS, no Kit Smart Grid, usando ATPDraw, MATLAB e Python. Continuidade da pesquisa anterior, com orientação do Prof. Aryfrance Rocha Almeida.</p>
+          </div>
+        </li>
         <li class="r">
           <time>jan 2025 — ago 2026</time>
           <div>
@@ -520,56 +539,35 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
         </div>
       </div>
 
-      <!-- Braço robótico -->
-      <article class="card r" aria-labelledby="h-braco">
-        <div class="card-art" aria-hidden="true">
-          <svg viewBox="0 0 280 240" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M60 222h140" opacity=".35"/>
-            <rect x="92" y="198" width="76" height="24" rx="6"/>
-            <path d="M112 198v-12h36v12"/>
-            <circle cx="130" cy="186" r="6"/>
-            <g class="arm-a">
-              <path d="M130 186 170 110"/>
-              <circle cx="170" cy="110" r="6"/>
-              <g class="arm-b">
-                <path d="M170 110 222 78"/>
-                <circle cx="222" cy="78" r="5"/>
-                <path d="M222 78l18-4M222 78l14 12"/>
-                <path d="M240 74l8 6M236 90l9-3"/>
-              </g>
-            </g>
-            <path d="M40 40c10-10 22-10 32 0M48 50c6-6 12-6 18 0" opacity=".5"/>
-            <circle cx="57" cy="58" r="2" fill="currentColor" stroke="none" opacity=".5"/>
-          </svg>
+      <!-- Segunda pesquisa -->
+      <article class="card r" aria-labelledby="h-ic2">
+        <div class="card-art">
+          <span class="badge">Em andamento</span>
+          <div class="spec">
+            <span class="spec-n">3</span>
+            <span class="spec-l">fontes + BESS</span>
+          </div>
+          <ul class="spec-list">
+            <li class="spec-web">Fotovoltaica · hidrelétrica · eólica</li>
+            <li><b>12</b> meses</li>
+            <li>Emulação em Raspberry</li>
+          </ul>
         </div>
         <div class="card-body">
-          <span class="eyebrow">Projeto pessoal · Sistemas embarcados</span>
-          <h3 class="h3" id="h-braco">Braço Robótico ESP32 — 4 graus de liberdade</h3>
-          <p class="lede">Controlado por Wi-Fi, com o ESP32 atuando ao mesmo tempo como ponto de acesso e servidor web. Uma interface responsiva abre direto no navegador do celular — sem aplicativo, sem roteador, sem rede externa.</p>
-          <div class="cols">
-            <div>
-              <span class="label">O que faz</span>
-              <ul class="feats">
-                <li><b>Modo Access Point</b>O ESP32 sobe a própria rede — funciona em qualquer lugar, sem infraestrutura.</li>
-                <li><b>Interface web</b>Controles para os três eixos do braço e acionamento da garra.</li>
-                <li><b>Interpolação de movimento</b>Entre a posição atual e a alvo, sem os saltos bruscos do comando direto de servo.</li>
-                <li><b>Ângulos em tempo real</b>Leitura de cada junta na própria página, usada para calibração.</li>
-              </ul>
-            </div>
-            <div>
-              <span class="label">Engenharia</span>
-              <ul class="feats">
-                <li><b>ESP32 DevKit</b>Portado de uma Xiao ESP32S3, com remapeamento de pinos e ajuste de PWM.</li>
-                <li><b>Fonte externa de 5 V</b>Alimentação dos servos isolada — pelo regulador da placa, a queda de tensão sob carga reinicia o microcontrolador.</li>
-                <li><b>Simulação no Wokwi</b>Circuito completo versionado, para validar o firmware sem hardware em mãos.</li>
-              </ul>
-            </div>
-          </div>
+          <span class="eyebrow">Iniciação Científica Voluntária · ICV / UFPI · set 2026 — ago 2027</span>
+          <h3 class="h3" id="h-ic2">Detecção, Localização e Classificação de Faltas em Linhas de Transmissão de Sistemas Híbridos com BESS</h3>
+          <p class="lede">A integração de usinas solares e eólicas ao sistema elétrico brasileiro está crescendo — e exige estudos mais avançados de proteção. O objetivo: implementar um sistema híbrido (fotovoltaica, hidrelétrica e eólica) com armazenamento em baterias no Kit Smart Grid e detectar, classificar e localizar faltas nas suas linhas.</p>
+          <p class="fine-note">Projeto PICT 14561-2026 · Plano de trabalho: Modelagem de Linhas de Transmissão do Kit Smart Grid e BESS usando ATPDraw, MATLAB e Python · Orientação do Prof. Aryfrance Rocha Almeida · Continuidade da pesquisa anterior.</p>
+          <ol class="road">
+            <li><time>set — out 2026</time><span>Revisão bibliográfica e modelagem das linhas no Kit Smart Grid e BESS no ATP/ATPDraw.</span></li>
+            <li><time>out 2026 — jan 2027</time><span>Algoritmos de detecção, localização e classificação em MATLAB e Python.</span></li>
+            <li><time>fev — mar 2027</time><span>Relatório parcial e sistema híbrido com BESS, integrando ATP/ATPDraw, MATLAB e Python.</span></li>
+            <li><time>mar — abr 2027</time><span>Emulação no Raspberry, com processamento digital de sinais e inteligência computacional.</span></li>
+            <li><time>abr — ago 2027</time><span>Trabalhos para eventos científicos e relatório final.</span></li>
+          </ol>
           <div class="chips">
-            <span class="chip">C++</span><span class="chip">ESP32</span><span class="chip">PlatformIO</span><span class="chip">Servomotores</span><span class="chip">HTTP / Wi-Fi AP</span><span class="chip">Wokwi</span>
+            <span class="chip">ATP / ATPDraw</span><span class="chip">MATLAB</span><span class="chip">Python</span><span class="chip">Raspberry</span><span class="chip">BESS</span><span class="chip">Smart Grid</span>
           </div>
-          <p class="fine" style="font-size:var(--fs-sm);color:var(--text-2);margin-top:20px">4 servos · 3 eixos + garra · controle via navegador</p>
-          <a class="more" href="https://github.com/andrelsrv/robot-arm-esp32" rel="noopener" data-track="repo/braco-robotico">Ver repositório</a>
         </div>
       </article>
     </div>
