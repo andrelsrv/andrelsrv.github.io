@@ -8,31 +8,90 @@ proteção de linhas de transmissão e modelagem computacional de redes.
 
 ## Sobre este repositório
 
-Site estático de página única, sem framework, sem etapa de build e sem
-dependências além das fontes do Google Fonts. Publicado automaticamente pelo
-GitHub Pages a cada push na branch `main`.
+Site estático de página única, sem framework, sem etapa de build. Publicado
+automaticamente pelo GitHub Pages a cada push na branch `main`.
 
 ```
-index.html   Página completa (HTML + CSS + JS embutidos)
-og.png       Imagem de pré-visualização ao compartilhar o link
+index.html   Página completa: HTML + CSS crítico inline
+main.js      Aprimoramentos (animações, abas, compartilhar, analytics) — opcional
+og.png       Imagem de pré-visualização ao compartilhar o link (1200×630)
 .nojekyll    Desativa o processamento Jekyll do GitHub Pages
 ```
 
+Testar localmente:
+
+```bash
+python -m http.server 8000
+```
+
+e abrir `http://localhost:8000`.
+
 ## Decisões técnicas
 
-- **Sem framework.** O conteúdo é essencialmente texto e um punhado de
-  interações; qualquer framework aqui seria peso morto no carregamento.
-- **Tema claro e escuro** seguem a preferência do sistema, com alternância
-  manual persistida em `localStorage`.
-- **Movimento é aprimoramento, não requisito.** Todo conteúdo e todos os
-  números estão no HTML e permanecem corretos se o JavaScript não executar.
-  As animações respeitam `prefers-reduced-motion`.
-- **Prioridade para navegador móvel embutido** (Instagram, WhatsApp): meta
-  tags Open Graph para a pré-visualização do link, `theme-color` para a barra
-  do navegador, `svh` para evitar salto de layout quando a barra recolhe, e
-  declarações de reserva para `color-mix` em WebKit mais antigo.
-- **Contraste verificado** em ambos os temas: todos os textos ficam acima de
-  4,5:1 (WCAG AA).
+- **Mobile-first para o navegador do Instagram.** CSS base escrito para 360px,
+  `min-width` para tablet/desktop, `100svh` (com reserva `100vh`),
+  `viewport-fit=cover` + `safe-area-inset`, áreas de toque ≥ 44px,
+  `backdrop-filter` só na nav, sem `target="_blank"` nem popups.
+- **Funciona sem JavaScript.** Todo conteúdo e todos os números estão no HTML.
+  Se `main.js` não carregar em 3 s, as animações de entrada são desligadas e
+  tudo aparece. As abas “Arquitetura / Validação” viram dois cards.
+- **Tema claro e escuro** seguem o sistema, com alternância manual guardada em
+  `localStorage` (`theme-pref`) — único uso de armazenamento local.
+- **`prefers-reduced-motion`** desliga reveal, contagem, parallax e a onda
+  animada (fica um quadro estático).
+- **Contraste AA** verificado nos dois temas (texto secundário ≥ 4,6:1,
+  links ≥ 5,2:1 no claro e ≥ 5,6:1 no escuro).
+
+## Estatísticas de acesso (GoatCounter)
+
+Contagem anônima, sem cookies e sem fingerprinting — compatível com a LGPD sem
+banner de consentimento. Nenhum nome, e-mail, IP ou identificador é coletado.
+
+### Configurar
+
+1. Crie uma conta gratuita em <https://www.goatcounter.com/signup> e escolha
+   um código (ex.: `andrelsrv` → `andrelsrv.goatcounter.com`).
+2. Em `index.html`, procure `SEU_CODIGO` e troque pelo seu código:
+   ```html
+   <script id="gc" data-goatcounter="https://andrelsrv.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+   ```
+3. Faça push. As visitas aparecem no painel do GoatCounter; os eventos
+   aparecem como caminhos que começam com `evento/`.
+
+Acessos a partir de `localhost` são ignorados pelo GoatCounter.
+
+### Eventos registrados
+
+| Evento | Quando |
+| --- | --- |
+| `evento/contato/email` | Clique em “Enviar e-mail” |
+| `evento/contato/github` · `linkedin` · `instagram` | Clique nos ícones sociais |
+| `evento/contato/compartilhar` | Botão Compartilhar / Copiar link |
+| `evento/repo/classificador-faltas` | “Ver repositório” do Classificador de Faltas |
+| `evento/repo/braco-robotico` | “Ver repositório” do Braço Robótico |
+| `evento/scroll/25` · `50` · `75` · `100` | Profundidade de rolagem (uma vez cada) |
+| `evento/secao/perfil` · `experiencia` · `pesquisa` · `formacao` · `contato` | Seção vista (uma vez cada) — compare os totais para ver a mais visitada |
+| `evento/tema/claro` · `escuro` | Troca manual de tema |
+| `evento/origem/instagram-webview` | Acesso pelo navegador embutido do Instagram |
+| `evento/origem/instagram` · `linkedin` · `cv` · `email` | Parâmetro `?ref=` da URL |
+| `evento/publico/professor` · `recrutador` · `pesquisador` · `curiosidade` | Resposta opcional a “Como você chegou aqui?” |
+
+Para marcar um novo elemento, basta `data-track="grupo/nome"` — um único
+listener delegado em `main.js` cuida do resto. A função `track(nome)` é
+segura: se o script estiver bloqueado (adblock), nada acontece.
+
+### Links com `?ref=`
+
+O navegador do Instagram costuma omitir o referrer, então use um link por canal:
+
+| Canal | Link |
+| --- | --- |
+| Bio do Instagram | `https://andrelsrv.github.io/?ref=instagram` |
+| LinkedIn | `https://andrelsrv.github.io/?ref=linkedin` |
+| Currículo (PDF) | `https://andrelsrv.github.io/?ref=cv` |
+| Assinatura de e-mail | `https://andrelsrv.github.io/?ref=email` |
+
+Outros valores de `ref` são ignorados (lista fechada em `main.js`).
 
 ## Licença
 
