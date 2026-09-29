@@ -15,6 +15,9 @@ automaticamente pelo GitHub Pages a cada push na branch `main`.
 index.html   Página completa: HTML + CSS crítico inline
 main.js      Aprimoramentos (animações, abas, compartilhar, analytics) — opcional
 og.png       Imagem de pré-visualização ao compartilhar o link (1200×630)
+favicon.svg  Monograma "AL" (adapta ao tema); favicon.ico como reserva
+apple-touch-icon.png, icon-192.png, icon-512.png, manifest.webmanifest
+             Ícones da tela inicial e manifest básico
 .nojekyll    Desativa o processamento Jekyll do GitHub Pages
 ```
 
@@ -42,6 +45,15 @@ e abrir `http://localhost:8000`.
 - **Contraste AA** verificado nos dois temas (texto secundário ≥ 4,6:1,
   links ≥ 5,2:1 no claro e ≥ 5,6:1 no escuro).
 
+## A linha de transmissão (hero)
+
+Pulsos gaussianos viajam nas duas direções a partir do toque e refletem nas
+extremidades com Γ = (Z_L − Z_0)/(Z_L + Z_0): aberto Γ = +1, curto Γ = −1,
+casado Γ = 0 (absorvido), com atenuação exponencial ao longo do percurso.
+Pausa fora da tela e com a aba oculta. Com `prefers-reduced-motion`, a linha
+fica estática e um toque desenha o pulso em quadros discretos sobrepostos.
+Sem JavaScript, um SVG estático mostra o pulso incidente e o refletido.
+
 ## Estatísticas de acesso (GoatCounter)
 
 Contagem anônima, sem cookies e sem fingerprinting — compatível com a LGPD sem
@@ -67,13 +79,17 @@ Acessos a partir de `localhost` são ignorados pelo GoatCounter.
 | `evento/contato/email` | Clique em “Enviar e-mail” |
 | `evento/contato/github` · `linkedin` · `instagram` | Clique nos ícones sociais |
 | `evento/contato/compartilhar` | Botão Compartilhar / Copiar link |
+| `evento/clique/whatsapp` | “Fale comigo no WhatsApp” |
 | `evento/repo/classificador-faltas` | “Ver repositório” do Classificador de Faltas |
+| `evento/onda/toque` | Primeiro toque na linha de transmissão do hero |
+| `evento/onda/terminal-aberto` · `curto` · `casado` | Troca da terminação da linha |
+| `evento/detalhes/classificador` · `icv` · `experiencia` · `cursos` | Abertura dos blocos recolhidos |
 | `evento/scroll/25` · `50` · `75` · `100` | Profundidade de rolagem (uma vez cada) |
-| `evento/secao/perfil` · `experiencia` · `pesquisa` · `formacao` · `contato` | Seção vista (uma vez cada) — compare os totais para ver a mais visitada |
+| `evento/secao/perfil` · `experiencia` · `web` · `pesquisa` · `formacao` · `contato` | Seção vista (uma vez cada) — compare os totais para ver a mais visitada |
 | `evento/tema/claro` · `escuro` | Troca manual de tema |
 | `evento/origem/instagram-webview` | Acesso pelo navegador embutido do Instagram |
-| `evento/origem/instagram` · `linkedin` · `cv` · `email` | Parâmetro `?ref=` da URL |
-| `evento/publico/professor` · `recrutador` · `pesquisador` · `curiosidade` | Resposta opcional a “Como você chegou aqui?” |
+| `evento/origem/instagram` · `linkedin` · `cv` · `email` · `whatsapp` · `app` | Parâmetro `?ref=` da URL |
+| `evento/publico/professor` · `recrutador` · `pesquisador` · `cliente` · `curiosidade` | Resposta opcional a “Como você chegou aqui?” |
 
 Para marcar um novo elemento, basta `data-track="grupo/nome"` — um único
 listener delegado em `main.js` cuida do resto. A função `track(nome)` é
@@ -89,6 +105,7 @@ O navegador do Instagram costuma omitir o referrer, então use um link por canal
 | LinkedIn | `https://andrelsrv.github.io/?ref=linkedin` |
 | Currículo (PDF) | `https://andrelsrv.github.io/?ref=cv` |
 | Assinatura de e-mail | `https://andrelsrv.github.io/?ref=email` |
+| Status/mensagens do WhatsApp | `https://andrelsrv.github.io/?ref=whatsapp` |
 
 Outros valores de `ref` são ignorados (lista fechada em `main.js`).
 

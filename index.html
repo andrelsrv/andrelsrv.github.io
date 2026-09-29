@@ -4,35 +4,36 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-<title>André Luís Alves Carvalho — Engenharia Elétrica</title>
-<meta name="description" content="Estudante de Engenharia Elétrica na UFPI. Sistemas de potência, proteção de linhas de transmissão, transitórios eletromagnéticos e machine learning aplicado.">
+<title>André Luís Alves Carvalho — Engenharia Elétrica · Sites e sistemas</title>
+<meta name="description" content="Estudante de Engenharia Elétrica na UFPI. Sistemas de potência, proteção de linhas de transmissão e machine learning aplicado — e sites e sistemas web feitos sob medida.">
 <meta name="author" content="André Luís Alves Carvalho">
 <link rel="canonical" href="https://andrelsrv.github.io/">
 
-<!-- Cor da barra do navegador; atualizada pelo JS quando o tema é trocado manualmente -->
 <meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <meta name="color-scheme" content="light dark">
 
-<!-- Pré-visualização ao compartilhar (Instagram, WhatsApp, LinkedIn) -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="André Luís Alves Carvalho">
-<meta property="og:title" content="André Luís Alves Carvalho — Engenharia Elétrica">
-<meta property="og:description" content="Sistemas de potência, proteção de linhas de transmissão e machine learning aplicado. Pesquisa de Iniciação Científica na UFPI.">
+<meta property="og:title" content="André Luís Alves Carvalho — Engenharia Elétrica · Sites e sistemas">
+<meta property="og:description" content="Sistemas de potência e machine learning na pesquisa. Sites e sistemas web sob medida no dia a dia. Toque na linha e veja o pulso refletir.">
 <meta property="og:url" content="https://andrelsrv.github.io/">
 <meta property="og:image" content="https://andrelsrv.github.io/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="André Luís Alves Carvalho — Engenharia Elétrica, sistemas de potência, UFPI.">
+<meta property="og:image:alt" content="André Luís Alves Carvalho — uma linha de transmissão com um pulso refletindo no terminal.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="André Luís Alves Carvalho — Engenharia Elétrica">
-<meta name="twitter:description" content="Sistemas de potência, proteção de linhas de transmissão e machine learning aplicado. Pesquisa de Iniciação Científica na UFPI.">
+<meta name="twitter:title" content="André Luís Alves Carvalho — Engenharia Elétrica · Sites e sistemas">
+<meta name="twitter:description" content="Sistemas de potência e machine learning na pesquisa. Sites e sistemas web sob medida no dia a dia.">
 <meta name="twitter:image" content="https://andrelsrv.github.io/og.png">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
 
-<!-- Tema aplicado antes da pintura (sem flash). localStorage só guarda o tema. -->
+<!-- Tema antes da pintura (sem flash). localStorage só guarda o tema. -->
 <script>
 (function(){
   var d=document.documentElement; d.className+=" js";
@@ -44,12 +45,10 @@
 <!-- Inter só como reserva para Windows/Android; Apple usa a fonte do sistema -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
 
-<!--
-  ANALYTICS — GoatCounter (sem cookies, sem fingerprinting).
-  Conta: andrelsrv.goatcounter.com. Veja o README.
--->
+<!-- Analytics: GoatCounter (sem cookies). Conta: andrelsrv.goatcounter.com. Veja o README. -->
 <script id="gc" data-goatcounter="https://andrelsrv.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
 <style>
@@ -57,21 +56,21 @@
 :root{
   --bg:#fbfbfd; --bg-alt:#f5f5f7; --inset:#ebebf0; --surface:#ffffff; --surface-2:#f5f5f7;
   --text:#1d1d1f; --text-2:#6e6e73; --line:#d2d2d7;
-  --accent:#0066cc; --btn:#0071e3; --btn-text:#fff;
+  --accent:#0066cc; --btn:#0071e3; --btn-text:#fff; --wa:#0a7c3e;
   --nav-bg:rgba(251,251,253,.72); --nav-solid:#fbfbfd;
   --shadow:0 2px 6px rgba(0,0,0,.03),0 12px 32px rgba(0,0,0,.06);
   --grad:linear-gradient(180deg,#1d1d1f 30%,#56565b);
 
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter","Helvetica Neue",Arial,sans-serif;
-  --fs-hero:clamp(3rem,13vw,6rem);
-  --fs-h2:clamp(2.25rem,8.5vw,4rem);
+  --fs-hero:clamp(2.5rem,10vw,4.75rem);
+  --fs-h2:clamp(2.125rem,8vw,3.75rem);
   --fs-h3:clamp(1.5rem,5.2vw,2.25rem);
-  --fs-stat:clamp(2.5rem,11vw,4.5rem);
+  --fs-stat:clamp(2.25rem,10.5vw,4.5rem);
   --fs-body:clamp(1.0625rem,1rem + .35vw,1.3125rem);
   --fs-sm:.9375rem; --fs-xs:.8125rem;
 
   --gutter:max(20px,env(safe-area-inset-left),env(safe-area-inset-right));
-  --maxw:1040px; --sec-y:clamp(88px,14vw,180px);
+  --maxw:1040px; --sec-y:clamp(56px,13vw,168px);
   --r-lg:28px; --r-md:22px; --r-sm:14px; --pill:980px;
   --ease:cubic-bezier(.25,.1,.25,1); --nav-h:48px;
   --safe-top:env(safe-area-inset-top,0px);
@@ -79,14 +78,14 @@
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#000; --bg-alt:#0a0a0a; --inset:#2c2c2e; --surface:#1c1c1e; --surface-2:#2c2c2e;
-    --text:#f5f5f7; --text-2:#a1a1a6; --line:#38383a; --accent:#2997ff;
+    --text:#f5f5f7; --text-2:#a1a1a6; --line:#38383a; --accent:#2997ff; --wa:#0a7c3e;
     --nav-bg:rgba(10,10,10,.72); --nav-solid:#0a0a0a;
     --shadow:none; --grad:linear-gradient(180deg,#f5f5f7 30%,#a1a1a6);
   }
 }
 :root[data-theme="dark"]{
   --bg:#000; --bg-alt:#0a0a0a; --inset:#2c2c2e; --surface:#1c1c1e; --surface-2:#2c2c2e;
-  --text:#f5f5f7; --text-2:#a1a1a6; --line:#38383a; --accent:#2997ff;
+  --text:#f5f5f7; --text-2:#a1a1a6; --line:#38383a; --accent:#2997ff; --wa:#0a7c3e;
   --nav-bg:rgba(10,10,10,.72); --nav-solid:#0a0a0a;
   --shadow:none; --grad:linear-gradient(180deg,#f5f5f7 30%,#a1a1a6);
 }
@@ -97,8 +96,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--text);font:400 var(--fs-body)/1.5 var(--font);
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   overflow-x:hidden;overflow-x:clip;position:relative}
-h1,h2,h3,p,ul,dl,dd{margin:0}
-ul,ol{padding:0;margin:0;list-style:none}
+h1,h2,h3,p,ul,ol,dl,dd,figure,fieldset{margin:0}
+ul,ol{padding:0;list-style:none}
+fieldset{border:0;padding:0;min-width:0}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline;text-underline-offset:.18em}
 button{font:inherit;color:inherit}
@@ -106,22 +106,23 @@ strong,b{font-weight:600;color:var(--text)}
 img,svg,canvas{display:block;max-width:100%}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
 ::selection{background:rgba(0,113,227,.2)}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--btn);color:#fff;padding:10px 16px;border-radius:var(--pill)}
 .skip:focus{top:calc(8px + var(--safe-top))}
+.ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 
 .wrap{width:100%;max-width:calc(var(--maxw) + 2*var(--gutter));margin:0 auto;padding:0 var(--gutter)}
 section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-top))}
 .alt{background:var(--bg-alt)}
 
-.eyebrow{display:block;font-size:var(--fs-xs);font-weight:600;letter-spacing:.02em;color:var(--text-2);margin-bottom:14px}
-.h2{font-size:var(--fs-h2);font-weight:700;line-height:1.06;letter-spacing:-.03em;text-wrap:balance;max-width:16ch}
+.eyebrow{display:block;font-size:var(--fs-xs);font-weight:600;letter-spacing:.02em;color:var(--text-2);margin-bottom:12px}
+.h2{font-size:var(--fs-h2);font-weight:700;line-height:1.06;letter-spacing:-.03em;text-wrap:balance;max-width:18ch}
 .h3{font-size:var(--fs-h3);font-weight:650;line-height:1.1;letter-spacing:-.025em;text-wrap:balance}
-.lede{color:var(--text-2);margin-top:20px;max-width:38ch;text-wrap:pretty}
+.lede{color:var(--text-2);margin-top:18px;max-width:40ch;text-wrap:pretty}
 .lede strong{color:var(--text)}
 .more{display:inline-flex;align-items:center;min-height:44px;font-weight:500}
 .more::after{content:"›";margin-left:.3em;font-size:1.2em;line-height:1;transition:transform .3s var(--ease)}
 @media (hover:hover){.more:hover::after{transform:translateX(3px)}}
+.todo{display:inline-block;padding:2px 8px;border-radius:6px;border:1px dashed var(--text-2);color:var(--text-2);font-size:var(--fs-sm);font-weight:500}
 
 /* ============ Nav ============ */
 .nav{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:var(--safe-top);transition:background-color .4s var(--ease),box-shadow .4s var(--ease)}
@@ -130,13 +131,14 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
   .nav.scrolled{background:var(--nav-bg);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px)}
 }
 .nav-in{display:flex;align-items:center;gap:4px;height:var(--nav-h)}
-.brand{font-size:1.0625rem;font-weight:600;letter-spacing:-.01em;color:var(--text);margin-right:auto;min-height:44px;display:flex;align-items:center}
+.brand{display:flex;align-items:center;gap:10px;font-size:1.0625rem;font-weight:600;letter-spacing:-.01em;color:var(--text);margin-right:auto;min-height:44px}
 .brand:hover{text-decoration:none}
+.mono{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--text);color:var(--bg);font-size:.75rem;font-weight:700;letter-spacing:-.02em}
 .links{display:none}
 .icon-btn{display:grid;place-items:center;width:44px;height:44px;border:0;background:none;border-radius:50%;cursor:pointer;color:var(--text);-webkit-tap-highlight-color:transparent}
 .icon-btn:active{background:var(--surface-2)}
-.icon-btn svg{width:19px;height:19px}
-.icon-sun,.icon-moon{transition:opacity .3s,transform .4s var(--ease);transform-origin:center}
+.icon-btn svg{width:20px;height:20px}
+.icon-sun,.icon-moon{transition:opacity .3s,transform .4s var(--ease);transform-origin:center;transform-box:fill-box}
 .icon-sun{opacity:0;transform:rotate(-60deg) scale(.6)}
 :root[data-theme="dark"] .icon-sun{opacity:1;transform:none}
 :root[data-theme="dark"] .icon-moon{opacity:0;transform:rotate(40deg) scale(.6)}
@@ -144,14 +146,11 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
   :root:not([data-theme="light"]) .icon-sun{opacity:1;transform:none}
   :root:not([data-theme="light"]) .icon-moon{opacity:0;transform:rotate(40deg) scale(.6)}
 }
-/* Menu móvel: <details> funciona sem JS */
-.menu{position:static}
 .menu summary{list-style:none}
 .menu summary::-webkit-details-marker{display:none}
-.menu .bar{transition:transform .35s var(--ease),opacity .2s}
+.menu .bar{transition:transform .35s var(--ease);transform-box:fill-box;transform-origin:center}
 .menu[open] .b1{transform:translateY(3.5px) rotate(45deg)}
 .menu[open] .b2{transform:translateY(-3.5px) rotate(-45deg)}
-.menu .bar{transform-box:fill-box;transform-origin:center}
 .sheet{position:absolute;left:0;right:0;top:100%;background:var(--nav-solid);padding:8px var(--gutter) 20px;box-shadow:0 12px 24px rgba(0,0,0,.08);border-bottom:1px solid var(--line)}
 .sheet a{display:flex;align-items:center;min-height:52px;font-size:1.5rem;font-weight:600;letter-spacing:-.02em;color:var(--text);border-bottom:1px solid var(--line)}
 .sheet a:last-child{border-bottom:0}
@@ -159,159 +158,194 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
 .sheet a:active{color:var(--text-2)}
 .menu[open] .sheet{animation:drop .35s var(--ease)}
 @keyframes drop{from{opacity:0;transform:translateY(-8px)}}
-
-@media (min-width:768px){
+@media (min-width:860px){
   .menu{display:none}
-  .links{display:flex;gap:4px;margin-right:4px}
-  .links a{font-size:.8125rem;color:var(--text);opacity:.8;padding:0 12px;min-height:44px;display:flex;align-items:center;transition:opacity .2s}
+  .links{display:flex;gap:2px;margin-right:4px}
+  .links a{font-size:.8125rem;color:var(--text);opacity:.8;padding:0 11px;min-height:44px;display:flex;align-items:center;transition:opacity .2s}
   .links a:hover{opacity:1;text-decoration:none}
   .links a[aria-current="true"]{opacity:1;color:var(--accent)}
 }
 
-/* ============ Hero ============ */
+/* ============ Hero + linha interativa ============ */
 .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
-  padding:calc(var(--nav-h) + var(--safe-top) + 40px) 0 calc(32px + env(safe-area-inset-bottom,0px));text-align:center;position:relative}
-.hero-in{will-change:auto}
-.hero .eyebrow{margin-bottom:18px}
+  padding:calc(var(--nav-h) + var(--safe-top) + 28px) 0 calc(20px + env(safe-area-inset-bottom,0px))}
 .name{font-size:var(--fs-hero);font-weight:700;line-height:1.02;letter-spacing:-.04em;text-wrap:balance;
   color:var(--text);background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.name span{display:block}
-.tagline{font-size:clamp(1.1875rem,1rem + 1.2vw,1.75rem);font-weight:500;line-height:1.3;letter-spacing:-.015em;color:var(--text-2);max-width:30ch;margin:22px auto 0;text-wrap:balance}
-.ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 26px;border-radius:var(--pill);
+.tagline{font-size:clamp(1.1875rem,1rem + 1.1vw,1.625rem);font-weight:500;line-height:1.3;letter-spacing:-.015em;color:var(--text-2);max-width:30ch;margin-top:16px;text-wrap:balance}
+.tagline b{font-weight:600}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border-radius:var(--pill);
   font-size:1.0625rem;font-weight:500;border:0;cursor:pointer;transition:transform .35s var(--ease),background-color .25s,color .25s;-webkit-tap-highlight-color:transparent}
 .btn:hover{text-decoration:none}
 .btn-fill{background:var(--btn);color:var(--btn-text)}
 .btn-ghost{background:transparent;color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.btn-wa{background:var(--wa);color:#fff}
 .btn:active{transform:scale(.97)}
 @media (hover:hover){.btn:hover{transform:scale(1.02)} .btn-fill:hover{background:#0077ed} .btn-ghost:hover{background:var(--accent);color:var(--bg)}}
-.wave{margin:clamp(40px,8vh,72px) auto 0;width:100%;max-width:880px}
-.wave canvas{width:100%;height:clamp(84px,18vw,140px)}
-.wave figcaption{font-size:var(--fs-xs);color:var(--text-2);margin-top:10px}
+
+.line{margin-top:clamp(28px,6vh,56px)}
+.line-stage{position:relative;cursor:crosshair;touch-action:pan-y;-webkit-tap-highlight-color:transparent;border-radius:12px}
+.line-stage canvas{width:100%;height:clamp(150px,34vw,260px)}
+.line-static{position:absolute;inset:0;width:100%;height:100%;color:var(--text)}
+.js .line-static{display:none}
+.line-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;margin-top:10px}
+.line-cap{display:block;font-size:var(--fs-sm);color:var(--text-2)}
+.line-cap b{font-weight:600}
+.gamma{display:block;font-size:var(--fs-xs);color:var(--text-2);font-variant-numeric:tabular-nums;margin-top:2px}
+.term{display:none}
+.js .term{display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;padding:3px;border-radius:12px;background:var(--surface-2)}
+.term legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.term label{position:relative;display:grid;place-items:center;min-height:44px;padding:0 14px;border-radius:9px;font-size:.9375rem;font-weight:500;color:var(--text-2);cursor:pointer;transition:color .2s,background-color .2s}
+.term input{position:absolute;opacity:0;pointer-events:none}
+.term input:checked+span{color:var(--text)}
+.term label:has(input:checked){background:var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.term label.on{background:var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.term input:focus-visible+span{outline:2px solid var(--accent);outline-offset:4px;border-radius:6px}
 
 /* ============ Perfil: bento ============ */
-.bio{display:grid;gap:18px;margin-top:28px;color:var(--text-2);max-width:40ch}
-.bento{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:48px}
-.tile{background:var(--surface);border-radius:var(--r-md);padding:22px 20px;box-shadow:var(--shadow);min-width:0;transition:transform .5s var(--ease)}
-.tile dt{font-size:var(--fs-xs);font-weight:600;color:var(--text-2);margin-bottom:8px}
+.bio{margin-top:20px;color:var(--text-2);max-width:52ch}
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:32px}
+.tile{background:var(--surface);border-radius:var(--r-md);padding:18px 16px;box-shadow:var(--shadow);min-width:0;transition:transform .5s var(--ease)}
+.tile dt{font-size:var(--fs-xs);font-weight:600;color:var(--text-2);margin-bottom:6px}
 .tile dd{font-size:1.0625rem;font-weight:600;line-height:1.25;letter-spacing:-.01em;overflow-wrap:anywhere}
 .tile.wide{grid-column:span 2}
-.tile.wide dd{font-size:clamp(1.375rem,5vw,1.75rem);letter-spacing:-.02em}
+.tile.wide dd{font-size:clamp(1.25rem,5vw,1.625rem);letter-spacing:-.02em}
 @media (hover:hover){.tile:hover{transform:scale(1.02)}}
 
 /* ============ Timeline ============ */
-.tl{margin-top:48px;position:relative;padding-left:22px}
+.tl{margin-top:36px;position:relative;padding-left:22px}
 .tl::before{content:"";position:absolute;left:3px;top:8px;bottom:8px;width:1px;background:var(--line)}
-.tl li{position:relative;padding-bottom:44px}
+.tl li{position:relative;padding-bottom:28px}
 .tl li:last-child{padding-bottom:0}
 .tl li::before{content:"";position:absolute;left:-22px;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--bg);box-shadow:inset 0 0 0 1.5px var(--text)}
 .alt .tl li::before{background:var(--bg-alt)}
-.tl time{display:block;font-size:var(--fs-sm);color:var(--text-2);margin-bottom:6px;font-variant-numeric:tabular-nums}
+.tl time{display:block;font-size:var(--fs-sm);color:var(--text-2);margin-bottom:4px;font-variant-numeric:tabular-nums}
 .tl h3{font-size:clamp(1.25rem,4.4vw,1.625rem);font-weight:650;letter-spacing:-.02em;line-height:1.2;text-wrap:balance}
 .tl .org{display:block;font-size:var(--fs-sm);font-weight:500;color:var(--text);margin-top:4px}
-.tl p{color:var(--text-2);margin-top:10px;max-width:58ch}
-.tl .chips{margin-top:14px}
+.tl p{color:var(--text-2);margin-top:8px;max-width:58ch}
+.tl .chips{margin-top:12px}
+.more-d .tl{margin-top:8px}
+
+/* ============ Web & sistemas ============ */
+.projects{display:grid;gap:12px;margin-top:36px}
+.proj{background:var(--surface);border-radius:var(--r-lg);padding:26px 22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px;min-width:0}
+.proj h3{font-size:clamp(1.375rem,4.6vw,1.75rem);font-weight:650;letter-spacing:-.02em;line-height:1.15}
+.proj dl{display:grid;gap:12px}
+.proj dt{font-size:var(--fs-xs);font-weight:600;color:var(--text-2)}
+.proj dd{font-size:1.0625rem;margin-top:2px}
+.proj .chips{margin-top:0}
+.self{background:var(--text);color:var(--bg)}
+.self .eyebrow,.self p{color:color-mix(in srgb,var(--bg) 72%,var(--text))}
+.self .eyebrow{color:var(--bg);opacity:.72}
+.scores{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0 0}
+.score{display:grid;justify-items:center;gap:6px;text-align:center}
+.ring{--p:0;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font-weight:650;font-size:1.0625rem;font-variant-numeric:tabular-nums;
+  background:radial-gradient(closest-side,var(--text) 82%,transparent 84% 100%),conic-gradient(#30d158 calc(var(--p)*1%),rgba(128,128,128,.35) 0)}
+.score span{font-size:.75rem;line-height:1.2}
+.facts2{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:var(--fs-sm)}
+.facts2 b{color:inherit;font-weight:650}
+.hire{margin-top:36px;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.hire p{font-size:clamp(1.375rem,4.6vw,1.875rem);font-weight:650;letter-spacing:-.02em;line-height:1.15}
 
 /* ============ Pesquisa ============ */
-.launch{text-align:center}
-.launch .h2{margin:0 auto;max-width:20ch}
-.launch .lede{margin:22px auto 0;max-width:44ch}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:36px 16px;margin:64px 0 0;text-align:center}
+.launch .h2{max-width:20ch}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:28px 16px;margin-top:40px}
 .stat .n{display:block;font-size:var(--fs-stat);font-weight:700;letter-spacing:-.045em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
 .stat .u{font-size:.5em;letter-spacing:-.02em;margin-left:.06em}
-.stat .d{display:block;font-size:var(--fs-sm);color:var(--text-2);margin-top:10px;line-height:1.35}
+.stat .d{display:block;font-size:var(--fs-sm);color:var(--text-2);margin-top:8px;line-height:1.35}
+.stack{margin-top:32px}
+.label{display:block;font-size:var(--fs-xs);font-weight:600;color:var(--text-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{display:inline-flex;align-items:center;min-height:32px;padding:0 13px;border-radius:var(--pill);background:var(--surface-2);font-size:var(--fs-sm);color:var(--text);transition:transform .3s var(--ease)}
+.alt .chip{background:var(--surface)}
+.panel .chip,.card .chip,.proj .chip,.skills .chip{background:var(--bg-alt)}
+.card-body .chips{margin-top:20px}
+@media (hover:hover){.chip:hover{transform:scale(1.04)}}
+.row-links{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;margin-top:20px}
+
+.more-d{margin-top:20px}
+.more-d>summary{list-style:none;display:inline-flex;align-items:center;min-height:44px;color:var(--accent);font-weight:500;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.more-d>summary::-webkit-details-marker{display:none}
+.more-d>summary::after{content:"›";margin-left:.35em;font-size:1.25em;line-height:1;transition:transform .35s var(--ease)}
+.more-d[open]>summary::after{transform:rotate(90deg)}
+.more-d[open]>.more-body{animation:drop .45s var(--ease)}
+.more-body{padding-top:8px}
 
 .seg{display:none}
-.panels{display:grid;gap:12px;margin-top:64px}
-.panel{background:var(--surface);border-radius:var(--r-lg);padding:28px 22px;box-shadow:var(--shadow);text-align:left}
-.panel h3{font-size:1.375rem;font-weight:650;letter-spacing:-.02em;margin-bottom:6px}
-.feats li{padding:16px 0;border-top:1px solid var(--line);color:var(--text-2);font-size:1.0625rem}
+.panels{display:grid;gap:12px;margin-top:12px}
+.panel{background:var(--surface);border-radius:var(--r-lg);padding:24px 20px;box-shadow:var(--shadow)}
+.panel h3{font-size:1.25rem;font-weight:650;letter-spacing:-.02em;margin-bottom:4px}
+.feats li{padding:14px 0;border-top:1px solid var(--line);color:var(--text-2);font-size:1rem}
 .feats li:first-of-type{border-top:0}
 .feats b{display:block;color:var(--text);font-size:1.0625rem;margin-bottom:2px}
-
-/* Segmented control (só com JS) */
-.js .seg{display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;position:relative;margin:64px auto 0;padding:3px;border-radius:12px;background:var(--surface-2);min-width:min(320px,100%)}
+.js .seg{display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;position:relative;margin-top:12px;padding:3px;border-radius:12px;background:var(--surface);min-width:min(320px,100%)}
 .js .seg button{position:relative;z-index:1;min-height:44px;padding:0 18px;border:0;background:none;border-radius:9px;font-size:1rem;font-weight:500;cursor:pointer;color:var(--text-2);transition:color .25s}
 .js .seg button[aria-selected="true"]{color:var(--text)}
-.js .seg .thumb{position:absolute;z-index:0;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:9px;background:var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.12);transition:transform .45s var(--ease)}
+.js .seg .thumb{position:absolute;z-index:0;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:9px;background:var(--surface-2);transition:transform .45s var(--ease)}
 .js .seg[data-i="1"] .thumb{transform:translateX(100%)}
-.js .panels{margin-top:16px}
 .js .panel[hidden]{display:none}
 .js .panel h3{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.seg-wrap{text-align:center}
-
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.chip{display:inline-flex;align-items:center;min-height:34px;padding:0 14px;border-radius:var(--pill);background:var(--surface-2);font-size:var(--fs-sm);color:var(--text);transition:transform .3s var(--ease),background-color .25s}
-.panel .chip,.card .chip{background:var(--bg-alt)}
-@media (hover:hover){.chip:hover{transform:scale(1.04)}}
-.label{display:block;font-size:var(--fs-xs);font-weight:600;color:var(--text-2)}
-.meta-row{display:flex;flex-direction:column;gap:6px;margin-top:40px;text-align:center}
-.meta-row .fine{font-size:var(--fs-sm);color:var(--text-2)}
-.stack{margin-top:48px;text-align:center}
-.stack .chips{justify-content:center}
+.fine{font-size:var(--fs-sm);color:var(--text-2);margin-top:14px}
+.fig{margin-top:14px;border:1px dashed var(--line);border-radius:var(--r-md);padding:22px;text-align:center;color:var(--text-2);font-size:var(--fs-sm)}
 
 /* Card da segunda pesquisa */
-.card{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden;margin-top:clamp(88px,12vw,140px);display:grid}
-.card-art{background:var(--inset);display:flex;flex-direction:column;justify-content:center;gap:28px;padding:36px 24px}
-.spec{display:flex;align-items:flex-end;gap:14px}
-.spec-n{font-size:clamp(6rem,30vw,10rem);font-weight:700;line-height:.8;letter-spacing:-.06em;
-  color:var(--text);background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.spec-l{font-size:clamp(1.25rem,5vw,1.625rem);font-weight:600;line-height:1.1;letter-spacing:-.02em;max-width:6ch;padding-bottom:.2em}
-.spec-list{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;font-size:var(--fs-sm);color:var(--text)}
-.spec-list b{font-size:1.5rem;font-weight:650;letter-spacing:-.02em;color:var(--text);margin-right:4px;font-variant-numeric:tabular-nums}
-.spec-web{grid-column:span 2;display:flex;align-items:center;gap:8px;padding-top:12px;border-top:1px solid var(--line)}
+.card{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden;margin-top:clamp(56px,10vw,120px);display:grid}
+.card-art{background:var(--inset);display:grid;grid-template-columns:auto 1fr;align-items:end;gap:16px 20px;padding:22px 20px}
+.card-art .badge{grid-column:1/-1}
 .badge{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:var(--fs-xs);font-weight:600;color:var(--text);padding:6px 12px;border-radius:var(--pill);background:var(--surface)}
 .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:#30d158}
-.road{margin-top:28px;display:grid;gap:0}
-.road li{display:grid;gap:2px;padding:14px 0;border-top:1px solid var(--line)}
-.road li:first-child{border-top:0;padding-top:0}
-.road time{font-size:var(--fs-xs);font-weight:600;color:var(--text-2);font-variant-numeric:tabular-nums}
-.road span{font-size:1.0625rem;color:var(--text)}
-.card-body .chips{margin-top:24px}
-.fine-note{font-size:var(--fs-sm);color:var(--text-2);margin-top:16px;line-height:1.5}
+.spec{display:flex;align-items:flex-end;gap:14px}
+.spec-n{font-size:clamp(4.5rem,22vw,9rem);font-weight:700;line-height:.8;letter-spacing:-.06em;
+  color:var(--text);background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.spec-l{font-size:clamp(1.125rem,4.5vw,1.625rem);font-weight:600;line-height:1.1;letter-spacing:-.02em;max-width:6ch;padding-bottom:.2em}
+.spec-list{display:grid;gap:6px;font-size:var(--fs-sm);color:var(--text)}
+.spec-list b{font-size:1.25rem;font-weight:650;letter-spacing:-.02em;margin-right:4px;font-variant-numeric:tabular-nums}
+.spec-web{display:flex;align-items:center;gap:8px}
 .spec-web::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
-.card-body{padding:30px 22px 32px}
-.card-body .h3{margin-top:4px}
+.card-body{padding:26px 22px 28px}
+.card-body .h3{margin-top:2px}
 .card-body .lede{max-width:none}
-.cols{display:grid;gap:8px;margin-top:24px}
+.road{display:grid}
+.road li{display:grid;gap:2px;padding:12px 0;border-top:1px solid var(--line)}
+.road li:first-child{border-top:0;padding-top:4px}
+.road time{font-size:var(--fs-xs);font-weight:600;color:var(--text-2);font-variant-numeric:tabular-nums}
+.road span{font-size:1rem;color:var(--text)}
 
 /* ============ Competências ============ */
-.skills{display:grid;gap:12px;margin-top:40px}
-.skill{background:var(--surface);border-radius:var(--r-md);padding:24px 20px;box-shadow:var(--shadow)}
-.skill .plain li{color:var(--text-2);font-size:1.0625rem;padding:8px 0;border-top:1px solid var(--line)}
-.skill .plain li:first-child{border-top:0}
-.skill .plain{margin-top:8px}
-.edu{margin-top:48px}
+.skills{margin-top:32px;background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:6px 20px}
+.skill{padding:14px 0;border-top:1px solid var(--line)}
+.skill .chip{min-height:30px;padding:0 11px;font-size:.875rem}
+.skill:first-child{border-top:0}
+.skill .chips{margin-top:8px}
+.skill .plain li{color:var(--text-2);font-size:1rem;padding:4px 0}
+.skill .plain{margin-top:6px}
 
 /* ============ Contato ============ */
 .contact{text-align:center;padding-bottom:calc(var(--sec-y)*.7)}
-.contact .h2{margin:0 auto;font-size:clamp(2.75rem,12vw,5.5rem);max-width:none}
-.contact .lede{margin:22px auto 0;max-width:36ch}
-.contact .ctas{margin-top:36px}
-.mail-addr{display:block;font-size:var(--fs-sm);color:var(--text-2);margin-top:16px;overflow-wrap:anywhere}
-.social{display:flex;justify-content:center;gap:12px;margin-top:32px}
+.contact .h2{margin:0 auto;font-size:clamp(2.5rem,11vw,5rem);max-width:none}
+.contact .lede{margin:18px auto 0;max-width:36ch}
+.contact .ctas{justify-content:center;margin-top:28px}
+.mail-addr{display:block;font-size:var(--fs-sm);color:var(--text-2);margin-top:14px;overflow-wrap:anywhere}
+.social{display:flex;justify-content:center;gap:12px;margin-top:26px}
 .social a{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--surface);box-shadow:var(--shadow);color:var(--text);transition:transform .35s var(--ease),color .25s}
 .social a:active{transform:scale(.94)}
 @media (hover:hover){.social a:hover{transform:scale(1.06);color:var(--accent);text-decoration:none}}
-.social svg{width:21px;height:21px}
 .share{display:none}
-.js .share{display:inline-flex;margin-top:24px;min-height:44px;padding:0 18px;border-radius:var(--pill);border:0;background:none;color:var(--accent);font-size:1rem;font-weight:500;cursor:pointer;align-items:center;gap:8px}
+.js .share{display:inline-flex;margin-top:18px;min-height:44px;padding:0 18px;border-radius:var(--pill);border:0;background:none;color:var(--accent);font-size:1rem;font-weight:500;cursor:pointer;align-items:center;gap:8px}
 .js .share:active{opacity:.6}
-.share svg{width:17px;height:17px}
+.share .ico{width:18px;height:18px}
 .share-msg{display:block;min-height:1.5em;font-size:var(--fs-sm);color:var(--text-2)}
-
-.who{display:none;margin:48px auto 0;max-width:560px}
+.who{display:none;margin:36px auto 0;max-width:560px}
 .js .who{display:block}
 .who p{font-size:var(--fs-sm);color:var(--text-2)}
 .who .opts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:12px}
 .who button{min-height:44px;padding:0 16px;border-radius:var(--pill);border:0;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);font-size:1rem;cursor:pointer;color:var(--text);transition:background-color .25s,color .25s,transform .3s var(--ease)}
 .who button:active{transform:scale(.96)}
 .who button[aria-pressed="true"]{background:var(--text);color:var(--bg);box-shadow:none}
-@media (hover:hover){.who button:hover{box-shadow:inset 0 0 0 1px var(--text-2)}}
 
-.foot{border-top:1px solid var(--line);padding:24px 0 calc(28px + env(safe-area-inset-bottom,0px));font-size:var(--fs-xs);color:var(--text-2)}
+.foot{border-top:1px solid var(--line);padding:22px 0 calc(26px + env(safe-area-inset-bottom,0px));font-size:var(--fs-xs);color:var(--text-2)}
 .foot-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px}
-.privacy{margin-top:14px}
+.privacy{margin-top:10px}
 .privacy summary{cursor:pointer;min-height:44px;display:flex;align-items:center;color:var(--text-2)}
 .privacy summary span{color:var(--accent);margin-left:.35em}
 .privacy[open] summary span{display:none}
@@ -320,9 +354,10 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
 
 /* ============ Reveal ============ */
 @media (prefers-reduced-motion:no-preference){
+  .rise{animation:rise 1s var(--ease) both;animation-delay:calc(var(--i,0)*90ms)}
+  @keyframes rise{from{transform:translateY(18px)}}
   .js .r{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease);transition-delay:calc(var(--i,0)*80ms)}
   .js .r.in{opacity:1;transform:none;filter:none}
-  .js .hero .r{transition-duration:1s}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -331,34 +366,32 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
 
 /* ============ Tablet / desktop ============ */
 @media (min-width:600px){
-  .skills{grid-template-columns:1fr 1fr}
-  .skill.span{grid-column:span 2}
-  .cols{grid-template-columns:1fr 1fr;gap:28px}
+  .projects{grid-template-columns:1fr 1fr}
+  .proj.wide{grid-column:span 2}
 }
 @media (min-width:768px){
   .bento{grid-template-columns:repeat(3,1fr);gap:16px}
-  .tile{padding:30px 28px}
-  .panel{padding:40px}
+  .tile{padding:26px 24px}
+  .panel{padding:36px}
+  .proj{padding:34px}
   .card{grid-template-columns:5fr 7fr}
-  .card-art{padding:48px 40px}
-  .spec-list{grid-template-columns:1fr}
-  .spec-web{grid-column:auto}
-  .card-body{padding:48px 44px}
+  .card-art{display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:24px;padding:48px 40px}
+  .spec-list{gap:10px}
+  .spec-web{padding-top:12px;border-top:1px solid var(--line)}
+  .card-body{padding:44px 40px}
   .tl{padding-left:0}
   .tl::before{left:calc(170px + 23px)}
   .tl li{display:grid;grid-template-columns:170px 1fr;gap:48px}
   .tl li::before{left:calc(170px + 20px)}
   .tl time{margin:0;padding-top:.2em;text-align:right}
-  .edu .tl::before{display:none}
-  .edu .tl li::before{display:none}
+  .skills{padding:10px 36px}
+  .skill{display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:baseline}
+  .skill .chips,.skill .plain{margin-top:0}
 }
 @media (min-width:768px) and (prefers-reduced-motion:no-preference){
   .js .r{filter:blur(6px)}
 }
 @media (min-width:1024px){
-  .bio{grid-template-columns:1fr 1fr;max-width:none;column-gap:48px}
-  .bio p:first-child{grid-column:span 2;font-size:clamp(1.375rem,1.8vw,1.625rem);color:var(--text);line-height:1.4;letter-spacing:-.01em;max-width:34ch}
-  .bio p:first-child strong{color:var(--text)}
   .stats{grid-template-columns:repeat(4,1fr);gap:24px;--fs-stat:clamp(3rem,5.4vw,4.75rem)}
   .panels{grid-template-columns:1fr 1fr}
   .js .panels{grid-template-columns:1fr}
@@ -368,12 +401,22 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
 <body>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V16M8 7.5v.01M12 16v-3.2c0-1.4 1-2.3 2.1-2.3s1.9.8 1.9 2.3V16M12 10.5V16"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5v.01"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M3.5 20.5 5 16a8.5 8.5 0 1 1 3.2 3.2Z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.4-1.9-1-1 .8c-.9-.4-1.8-1.3-2.2-2.2l.8-1-1-1.9Z"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V3M7.5 7.5 12 3l4.5 4.5M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></symbol>
+</svg>
+
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="#topo">André Luís</a>
+    <a class="brand" href="#topo"><span class="mono" aria-hidden="true">AL</span>André Luís</a>
     <nav class="links" aria-label="Seções">
       <a href="#perfil">Perfil</a>
       <a href="#experiencia">Experiência</a>
+      <a href="#web">Web</a>
       <a href="#pesquisa">Pesquisa</a>
       <a href="#formacao">Formação</a>
       <a href="#contato">Contato</a>
@@ -394,6 +437,7 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
       <nav class="sheet" aria-label="Seções">
         <a href="#perfil">Perfil</a>
         <a href="#experiencia">Experiência</a>
+        <a href="#web">Web &amp; sistemas</a>
         <a href="#pesquisa">Pesquisa</a>
         <a href="#formacao">Formação</a>
         <a href="#contato">Contato</a>
@@ -404,55 +448,72 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
 
 <main id="conteudo">
 
-  <!-- HERO -->
+  <!-- HERO: a linha de transmissão é a assinatura do site -->
   <div class="hero" id="topo">
-    <div class="wrap hero-in" id="heroIn">
-      <span class="eyebrow r">Engenharia Elétrica · Sistemas de potência · UFPI</span>
-      <h1 class="name r" style="--i:1"><span>André Luís</span> <span>Alves Carvalho</span></h1>
-      <p class="tagline r" style="--i:2">Entre a engenharia clássica de proteção e os métodos computacionais que a estão redefinindo.</p>
-      <div class="ctas r" style="--i:3">
-        <a class="btn btn-fill" href="#pesquisa">Ver pesquisa</a>
+    <div class="wrap" id="heroIn">
+      <span class="eyebrow rise">Engenharia Elétrica · UFPI · Sites e sistemas</span>
+      <h1 class="name rise" style="--i:1">André Luís Alves Carvalho</h1>
+      <p class="tagline rise" style="--i:2">Sistemas de potência na pesquisa. <b>Sites e sistemas</b> no dia a dia.</p>
+      <div class="ctas rise" style="--i:3">
+        <a class="btn btn-fill" href="#web">Ver projetos</a>
         <a class="btn btn-ghost" href="#contato">Contato</a>
       </div>
-      <figure class="wave r" style="--i:4">
-        <canvas id="wave" aria-hidden="true"></canvas>
-        <figcaption>Transitório eletromagnético · onda incidente e reflexão</figcaption>
+
+      <figure class="line rise" style="--i:4" aria-labelledby="lineCap">
+        <div class="line-stage" id="lineStage" tabindex="0" role="button" aria-label="Disparar um pulso no centro da linha de transmissão">
+          <canvas id="wave" aria-hidden="true"></canvas>
+          <!-- Sem JavaScript: um quadro estático do pulso incidente e refletido -->
+          <svg class="line-static" viewBox="0 0 400 100" preserveAspectRatio="none" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M0 60H400" opacity=".3" vector-effect="non-scaling-stroke"/>
+            <path d="M0 60H120C132 60 136 24 146 24S160 60 172 60H300C312 60 316 42 326 42S340 60 352 60H400" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+          </svg>
+        </div>
+        <div class="line-bar">
+          <figcaption id="lineCap">
+            <span class="line-cap"><b>Toque na linha.</b> Veja o pulso refletir.</span>
+            <span class="gamma" id="gammaTxt">Γ = (Z<sub>L</sub> − Z<sub>0</sub>) / (Z<sub>L</sub> + Z<sub>0</sub>) · terminal aberto: Γ = +1</span>
+          </figcaption>
+          <fieldset class="term" id="term">
+            <legend>Terminação da linha</legend>
+            <label class="on"><input type="radio" name="term" value="1" checked><span>Aberto</span></label>
+            <label><input type="radio" name="term" value="-1"><span>Curto</span></label>
+            <label><input type="radio" name="term" value="0"><span>Casado</span></label>
+          </fieldset>
+        </div>
       </figure>
     </div>
   </div>
 
-  <!-- 01 PERFIL -->
+  <!-- PERFIL -->
   <section class="alt" id="perfil" aria-labelledby="h-perfil">
     <div class="wrap">
       <span class="eyebrow r">Perfil</span>
       <h2 class="h2 r" id="h-perfil">Entre a bancada e o código.</h2>
       <div class="bio">
-        <p class="r">Estudo Engenharia Elétrica na Universidade Federal do Piauí, com formação prevista para 2027. Meu foco são os <strong>sistemas de potência</strong> — onde a modelagem física rigorosa de uma rede encontra as ferramentas computacionais capazes de extrair decisões confiáveis dela.</p>
-        <p class="r">Na prática: modelar linhas de transmissão em simuladores de transitórios eletromagnéticos, processar oscilografias e construir software que outras pessoas consigam de fato usar. Prezo por <strong>validação honesta</strong> — resultado que não sobrevive a um teste independente não é resultado.</p>
-        <p class="r">Fora da pesquisa, atuo com infraestrutura técnica e transmissão ao vivo em projeto comunitário. Aprendi a fazer sistema funcionar com o que se tem em mãos.</p>
+        <p class="r">Estudo Engenharia Elétrica na UFPI (formação prevista para 2027) e pesquiso <strong>sistemas de potência</strong>: modelo linhas de transmissão, processo oscilografias e construo software que outras pessoas conseguem de fato usar. Prezo por <strong>validação honesta</strong> — resultado que não sobrevive a um teste independente não é resultado.</p>
       </div>
       <dl class="bento">
         <div class="tile wide r"><dt>Formação</dt><dd>Eng. Elétrica · UFPI · 2022–2027</dd></div>
         <div class="tile r" style="--i:1"><dt>Localização</dt><dd>Teresina, Piauí — Brasil</dd></div>
-        <div class="tile r" style="--i:2"><dt>Vínculo atual</dt><dd>Iniciação Científica · ICV / UFPI</dd></div>
+        <div class="tile r" style="--i:2"><dt>Vínculo atual</dt><dd>Estágio · Ferrnorte<br>ICV · UFPI</dd></div>
         <div class="tile r" style="--i:3"><dt>Idiomas</dt><dd>Português · Inglês intermediário</dd></div>
-        <div class="tile r" style="--i:4"><dt>Ferramentas</dt><dd>Python · MATLAB · ATPDraw</dd></div>
+        <div class="tile r" style="--i:4"><dt>Ferramentas</dt><dd>Python · MATLAB · ATPDraw · Next.js</dd></div>
       </dl>
     </div>
   </section>
 
-  <!-- 02 EXPERIÊNCIA -->
+  <!-- EXPERIÊNCIA -->
   <section id="experiencia" aria-labelledby="h-exp">
     <div class="wrap">
       <span class="eyebrow r">Experiência</span>
       <h2 class="h2 r" id="h-exp">Da pesquisa à prática.</h2>
       <ol class="tl">
         <li class="r">
-          <time>atual</time>
+          <time><span class="todo">[PREENCHER início]</span> — atual</time>
           <div>
             <h3>Estagiário em Análise de Sistemas</h3>
             <span class="org">Ferrnorte · estágio remunerado</span>
-            <p>Modelagem de sistemas para apoiar os processos da empresa — como um site de gestão de viagens desenvolvido do zero. Criação de sites, bancos de dados SQL, painéis em Power BI e automação de planilhas com Excel e Power Query.</p>
+            <p>Modelagem de sistemas para apoiar os processos da empresa — como um site de gestão de viagens. Criação de sites, SQL, painéis em Power BI e planilhas com Excel e Power Query.</p>
             <div class="chips"><span class="chip">Next.js</span><span class="chip">SQL</span><span class="chip">Power BI</span><span class="chip">Excel</span><span class="chip">Power Query</span></div>
           </div>
         </li>
@@ -461,18 +522,22 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
           <div>
             <h3>Iniciação Científica Voluntária (ICV)</h3>
             <span class="org">Universidade Federal do Piauí</span>
-            <p>Detecção, localização e classificação de faltas em linhas de transmissão de sistemas híbridos com BESS, no Kit Smart Grid, usando ATPDraw, MATLAB e Python. Continuidade da pesquisa anterior, com orientação do Prof. Aryfrance Rocha Almeida.</p>
+            <p>Faltas em linhas de transmissão de sistemas híbridos com BESS, no Kit Smart Grid. Continuidade da pesquisa anterior, com orientação do Prof. Aryfrance Rocha Almeida.</p>
           </div>
         </li>
-        <li class="r">
+      </ol>
+      <details class="more-d" data-track-open="detalhes/experiencia">
+        <summary>Ver experiência anterior</summary>
+        <ol class="tl more-body">
+        <li>
           <time>jan 2025 — ago 2026</time>
           <div>
             <h3>Bolsista de Iniciação Científica (PIBIC)</h3>
             <span class="org">Universidade Federal do Piauí</span>
-            <p>Modelagem computacional de linhas de transmissão em contexto de Smart Grid e geração distribuída, com algoritmos de detecção, classificação e localização de faltas. Orientação do Prof. Aryfrance Rocha Almeida.</p>
+            <p>Modelagem de linhas de transmissão em Smart Grid e geração distribuída, com algoritmos de detecção, classificação e localização de faltas.</p>
           </div>
         </li>
-        <li class="r">
+        <li>
           <time>mai 2025 — fev 2026</time>
           <div>
             <h3>Bolsista de Pesquisa de Pós-Graduação</h3>
@@ -480,73 +545,127 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
             <p>Modelos computacionais para Smart Grid, em parceria com a Agência Nacional de Eficiência Energética e Renováveis.</p>
           </div>
         </li>
-        <li class="r">
-          <time>voluntário</time>
+        <li>
+          <time><span class="todo">[PREENCHER datas]</span> · voluntário</time>
           <div>
             <h3>Assistente Técnico</h3>
             <span class="org">Rádio comunitária</span>
-            <p>Suporte técnico e manutenção de infraestrutura, configuração de equipamentos de áudio e operação de transmissão ao vivo via OBS Studio.</p>
+            <p>Infraestrutura técnica, equipamentos de áudio e transmissão ao vivo via OBS Studio.</p>
           </div>
         </li>
-      </ol>
+        </ol>
+      </details>
     </div>
   </section>
 
-  <!-- 03 PESQUISA -->
-  <section class="alt" id="pesquisa" aria-labelledby="h-pesq">
+  <!-- WEB & SISTEMAS -->
+  <section class="alt" id="web" aria-labelledby="h-web">
+    <div class="wrap">
+      <span class="eyebrow r">Web &amp; sistemas</span>
+      <h2 class="h2 r" id="h-web">Sites e sistemas feitos sob medida.</h2>
+      <p class="lede r">Do problema do processo ao sistema em produção: modelagem, interface, dados e painéis.</p>
+
+      <div class="projects">
+        <article class="proj r">
+          <span class="eyebrow" style="margin:0">Ferrnorte · sistema interno</span>
+          <h3>Site de gestão de viagens</h3>
+          <dl>
+            <div><dt>Problema</dt><dd><span class="todo">[PREENCHER: 1–2 frases]</span></dd></div>
+            <div><dt>O que foi construído</dt><dd><span class="todo">[PREENCHER]</span></dd></div>
+            <div><dt>Resultado</dt><dd><span class="todo">[PREENCHER]</span></dd></div>
+          </dl>
+          <div><span class="label">Stack</span><div class="chips"><span class="todo">[PREENCHER]</span></div></div>
+          <span class="todo" style="align-self:flex-start">[PREENCHER: link público]</span>
+        </article>
+
+        <article class="proj r" style="--i:1">
+          <span class="eyebrow" style="margin:0">Clientes</span>
+          <h3>Sites de clientes</h3>
+          <p class="todo" style="align-self:flex-start">[PREENCHER: somente com autorização de exibição]</p>
+        </article>
+
+        <article class="proj self wide r" aria-labelledby="h-self">
+          <span class="eyebrow" style="margin:0">Este site</span>
+          <h3 id="h-self">Zero framework, zero build.</h3>
+          <p>HTML, CSS e JavaScript escritos à mão. Medido com Lighthouse, no modo celular:</p>
+          <div class="scores" id="scores">
+            <div class="score"><span class="ring" style="--p:0">–</span><span>Desempenho</span></div>
+            <div class="score"><span class="ring" style="--p:0">–</span><span>Acessibilidade</span></div>
+            <div class="score"><span class="ring" style="--p:0">–</span><span>Boas práticas</span></div>
+            <div class="score"><span class="ring" style="--p:0">–</span><span>SEO</span></div>
+          </div>
+          <p class="facts2" id="weight"><span><b>–</b> KB transferidos</span><span><b>–</b> requisições</span></p>
+        </article>
+      </div>
+
+      <div class="hire r">
+        <p>Quer um site assim?</p>
+        <a class="btn btn-wa" href="https://wa.me/PREENCHER_NUMERO?text=Ol%C3%A1%2C%20Andr%C3%A9!%20Vi%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto." rel="noopener" data-track="clique/whatsapp">
+          <svg class="ico" aria-hidden="true"><use href="#i-whatsapp"/></svg>Fale comigo no WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PESQUISA -->
+  <section id="pesquisa" aria-labelledby="h-pesq">
     <div class="wrap">
       <div class="launch">
-        <span class="eyebrow r">Iniciação Científica · PIBIC / CNPq · 2025 — 2026</span>
+        <span class="eyebrow r">Pesquisa · PIBIC / CNPq · 2025 — 2026</span>
         <h2 class="h2 r" id="h-pesq">Classificador e Localizador de Faltas em Linhas de Transmissão.</h2>
-        <p class="lede r">Da oscilografia do ATP/ATPDraw ao diagnóstico: detecta, classifica e localiza faltas elétricas. Atributos físicos do sinal e aprendizado de máquina supervisionado, entregues como aplicativo desktop autônomo — recebe o arquivo de simulação, devolve tipo de falta, distância e confiança.</p>
+        <p class="lede r">Detecta, classifica e localiza faltas a partir de oscilografias do ATP/ATPDraw — entregue como aplicativo desktop autônomo.</p>
 
         <div class="stats" id="stats">
           <div class="stat r"><span class="n"><span data-count="99.64" data-dec="2">99,64</span><span class="u">%</span></span><span class="d">Acurácia de classificação</span></div>
           <div class="stat r" style="--i:1"><span class="n"><span data-count="0.55" data-dec="2">0,55</span><span class="u">&nbsp;km</span></span><span class="d">Erro médio de localização</span></div>
-          <div class="stat r" style="--i:2"><span class="n"><span data-count="1650" data-dec="0">1.650</span></span><span class="d">Simulações reais na validação final</span></div>
+          <div class="stat r" style="--i:2"><span class="n"><span data-count="1650" data-dec="0">1.650</span></span><span class="d">Simulações independentes na validação final</span></div>
           <div class="stat r" style="--i:3"><span class="n"><span data-count="10" data-dec="0">10</span></span><span class="d">Classes de falta</span></div>
-        </div>
-
-        <div class="seg-wrap">
-          <div class="seg" id="seg" role="tablist" aria-label="Detalhes do classificador" data-i="0">
-            <span class="thumb" aria-hidden="true"></span>
-            <button type="button" role="tab" id="tab-arq" aria-controls="p-arq" aria-selected="true">Arquitetura</button>
-            <button type="button" role="tab" id="tab-val" aria-controls="p-val" aria-selected="false" tabindex="-1">Validação</button>
-          </div>
-        </div>
-        <div class="panels r">
-          <div class="panel" id="p-arq" role="tabpanel" aria-labelledby="tab-arq">
-            <h3>Arquitetura</h3>
-            <ul class="feats">
-              <li><b>Limiar adaptativo</b>Detecção do evento pela mediana e desvio absoluto do sinal pré-falta, sem instante fixo pré-configurado.</li>
-              <li><b>71 atributos físicos</b>RMS, componentes simétricas e a transformação modal real da linha, derivada da geometria dos condutores.</li>
-              <li><b>RandomForest em dois estágios</b>10 classes, seguido de quatro especialistas binários para os pares mais difíceis.</li>
-              <li><b>Correlação de ondas viajantes</b>Localização com verificação cruzada entre os dois terminais de medição.</li>
-              <li><b>Checagem de sanidade independente</b>Regressor de atenuação: em caso de discordância, o sistema recusa responder em vez de errar.</li>
-            </ul>
-          </div>
-          <div class="panel" id="p-val" role="tabpanel" aria-labelledby="tab-val">
-            <h3>Validação</h3>
-            <ul class="feats">
-              <li><b>1.650 simulações reais</b>Bateria final no ATPDraw, entre 10 classes e 11 linhas físicas distintas.</li>
-              <li><b>99,33% em linhas nunca vistas</b>Protocolo leave-one-line-out: linhas físicas fora de todas as etapas do treinamento.</li>
-              <li><b>Zero distâncias impossíveis</b>Nenhuma distância fisicamente impossível prevista, e nenhum erro de classificação sai como conclusivo.</li>
-              <li><b>92,76% de localização conclusiva</b>O restante é recusa deliberada, não erro.</li>
-              <li><b>59 testes automatizados</b>Todos passando, cobrindo o pipeline de ponta a ponta.</li>
-            </ul>
-          </div>
         </div>
 
         <div class="stack r">
           <span class="label">Stack</span>
-          <div class="chips">
-            <span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">NumPy / SciPy</span><span class="chip">ATP / ATPDraw</span><span class="chip">Tkinter</span><span class="chip">PyInstaller</span><span class="chip">Streamlit</span>
+          <div class="chips"><span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">NumPy / SciPy</span><span class="chip">ATP / ATPDraw</span><span class="chip">Tkinter</span><span class="chip">PyInstaller</span><span class="chip">Streamlit</span></div>
+        </div>
+        <div class="row-links r">
+          <a class="more" href="https://github.com/andrelsrv/IniciacaoCientifica-UFPI" rel="noopener" data-track="repo/classificador-faltas">Ver repositório</a>
+        </div>
+
+        <details class="more-d" data-track-open="detalhes/classificador">
+          <summary>Ver detalhes técnicos</summary>
+          <div class="more-body">
+            <p class="lede" style="margin-top:4px;max-width:52ch">Pipeline completo: atributos físicos do sinal e aprendizado de máquina supervisionado. O aplicativo recebe o arquivo de simulação e devolve tipo de falta, distância e confiança.</p>
+            <div class="seg" id="seg" role="tablist" aria-label="Detalhes do classificador" data-i="0">
+              <span class="thumb" aria-hidden="true"></span>
+              <button type="button" role="tab" id="tab-arq" aria-controls="p-arq" aria-selected="true">Arquitetura</button>
+              <button type="button" role="tab" id="tab-val" aria-controls="p-val" aria-selected="false" tabindex="-1">Validação</button>
+            </div>
+            <div class="panels">
+              <div class="panel" id="p-arq" role="tabpanel" aria-labelledby="tab-arq">
+                <h3>Arquitetura</h3>
+                <ul class="feats">
+                  <li><b>Limiar adaptativo</b>Detecção do evento pela mediana e desvio absoluto do sinal pré-falta, sem instante fixo pré-configurado.</li>
+                  <li><b>71 atributos físicos</b>RMS, componentes simétricas e a transformação modal real da linha, derivada da geometria dos condutores.</li>
+                  <li><b>RandomForest em dois estágios</b>10 classes, seguido de quatro especialistas binários para os pares mais difíceis.</li>
+                  <li><b>Correlação de ondas viajantes</b>Localização com verificação cruzada entre os dois terminais de medição.</li>
+                  <li><b>Checagem de sanidade independente</b>Regressor de atenuação: em caso de discordância, o sistema recusa responder em vez de errar.</li>
+                </ul>
+              </div>
+              <div class="panel" id="p-val" role="tabpanel" aria-labelledby="tab-val">
+                <h3>Validação</h3>
+                <ul class="feats">
+                  <li><b>1.650 simulações independentes</b>Bateria final no ATPDraw, entre 10 classes e 11 linhas físicas distintas.</li>
+                  <li><b>99,33% em linhas nunca vistas</b>Protocolo leave-one-line-out: linhas físicas fora de todas as etapas do treinamento.</li>
+                  <li><b>Zero distâncias impossíveis</b>Nenhuma distância fisicamente impossível foi prevista.</li>
+                  <li><b>Erros sinalizados, nunca conclusivos</b>Quando a classificação erra, o sistema marca o resultado como inconclusivo — nenhum erro é apresentado como resposta confiável.</li>
+                  <li><b>92,76% de localização conclusiva</b>O restante é recusa deliberada, não erro.</li>
+                  <li><b>59 testes automatizados</b>Todos passando, cobrindo o pipeline de ponta a ponta.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="fig">Oscilografia com a falta marcada (SVG) · <span class="todo">[PREENCHER: dados da oscilografia]</span></div>
+            <p class="fine">Escopo validado · 200 km · Rfault 0–300 Ω · ângulo 0–360°</p>
           </div>
-        </div>
-        <div class="meta-row r">
-          <a class="more" href="https://github.com/andrelsrv/IniciacaoCientifica-UFPI" rel="noopener" data-track="repo/classificador-faltas" style="align-self:center">Ver repositório</a>
-          <span class="fine">Escopo validado · 200 km · Rfault 0–300 Ω · ângulo 0–360°</span>
-        </div>
+        </details>
       </div>
 
       <!-- Segunda pesquisa -->
@@ -566,81 +685,73 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
         <div class="card-body">
           <span class="eyebrow">Iniciação Científica Voluntária · ICV / UFPI · set 2026 — ago 2027</span>
           <h3 class="h3" id="h-ic2">Detecção, Localização e Classificação de Faltas em Linhas de Transmissão de Sistemas Híbridos com BESS</h3>
-          <p class="lede">A integração de usinas solares e eólicas ao sistema elétrico brasileiro está crescendo — e exige estudos mais avançados de proteção. O objetivo: implementar um sistema híbrido (fotovoltaica, hidrelétrica e eólica) com armazenamento em baterias no Kit Smart Grid e detectar, classificar e localizar faltas nas suas linhas.</p>
-          <p class="fine-note">Projeto PICT 14561-2026 · Plano de trabalho: Modelagem de Linhas de Transmissão do Kit Smart Grid e BESS usando ATPDraw, MATLAB e Python · Orientação do Prof. Aryfrance Rocha Almeida · Continuidade da pesquisa anterior.</p>
-          <ol class="road">
-            <li><time>set — out 2026</time><span>Revisão bibliográfica e modelagem das linhas no Kit Smart Grid e BESS no ATP/ATPDraw.</span></li>
-            <li><time>out 2026 — jan 2027</time><span>Algoritmos de detecção, localização e classificação em MATLAB e Python.</span></li>
-            <li><time>fev — mar 2027</time><span>Relatório parcial e sistema híbrido com BESS, integrando ATP/ATPDraw, MATLAB e Python.</span></li>
-            <li><time>mar — abr 2027</time><span>Emulação no Raspberry, com processamento digital de sinais e inteligência computacional.</span></li>
-            <li><time>abr — ago 2027</time><span>Trabalhos para eventos científicos e relatório final.</span></li>
-          </ol>
           <div class="chips">
             <span class="chip">ATP / ATPDraw</span><span class="chip">MATLAB</span><span class="chip">Python</span><span class="chip">Raspberry</span><span class="chip">BESS</span><span class="chip">Smart Grid</span>
           </div>
+          <details class="more-d" data-track-open="detalhes/icv">
+            <summary>Ver resumo e cronograma</summary>
+            <div class="more-body">
+          <p class="lede" style="margin:0 0 14px">Um sistema híbrido — fotovoltaica, hidrelétrica e eólica com baterias — no Kit Smart Grid, e as faltas nas suas linhas detectadas, classificadas e localizadas.</p>
+              <p class="fine" style="margin:0 0 12px">Projeto PICT 14561-2026 · Plano: Modelagem de Linhas de Transmissão do Kit Smart Grid e BESS usando ATPDraw, MATLAB e Python · Orientação do Prof. Aryfrance Rocha Almeida.</p>
+              <ol class="road">
+                <li><time>set — out 2026</time><span>Revisão bibliográfica e modelagem das linhas no Kit Smart Grid e BESS no ATP/ATPDraw.</span></li>
+                <li><time>out 2026 — jan 2027</time><span>Algoritmos de detecção, localização e classificação em MATLAB e Python.</span></li>
+                <li><time>fev — mar 2027</time><span>Relatório parcial e sistema híbrido com BESS, integrando ATP/ATPDraw, MATLAB e Python.</span></li>
+                <li><time>mar — abr 2027</time><span>Emulação no Raspberry, com processamento digital de sinais e inteligência computacional.</span></li>
+                <li><time>abr — ago 2027</time><span>Trabalhos para eventos científicos e relatório final.</span></li>
+              </ol>
+            </div>
+          </details>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- 04 FORMAÇÃO -->
-  <section id="formacao" aria-labelledby="h-form">
+  <!-- FORMAÇÃO -->
+  <section class="alt" id="formacao" aria-labelledby="h-form">
     <div class="wrap">
       <span class="eyebrow r">Formação &amp; competências</span>
       <h2 class="h2 r" id="h-form">Base sólida. Ferramentas certas.</h2>
-      <div class="edu">
-        <ol class="tl">
-          <li class="r">
-            <time>out 2022 — out 2027</time>
-            <div>
-              <h3>Bacharelado em Engenharia Elétrica</h3>
-              <span class="org">Universidade Federal do Piauí</span>
-              <p>Ênfase em sistemas de potência, eletrônica de potência e modelagem computacional de redes.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-      <div class="skills">
-        <div class="skill r"><span class="label">Programação</span><div class="chips"><span class="chip">Python</span><span class="chip">C / C++</span><span class="chip">MATLAB</span></div></div>
-        <div class="skill r" style="--i:1"><span class="label">Software de engenharia</span><div class="chips"><span class="chip">ATP / ATPDraw</span><span class="chip">MATLAB / Simulink</span></div></div>
-        <div class="skill span r"><span class="label">Dados &amp; web</span><div class="chips"><span class="chip">SQL</span><span class="chip">Power BI</span><span class="chip">Excel</span><span class="chip">Power Query</span><span class="chip">Next.js</span></div></div>
-        <div class="skill span r"><span class="label">Domínio técnico</span><div class="chips"><span class="chip">Análise de sistemas de potência</span><span class="chip">Proteção de linhas</span><span class="chip">Eletrônica de potência</span><span class="chip">Modelagem Smart Grid</span><span class="chip">Machine learning aplicado</span></div></div>
-        <div class="skill span r"><span class="label">Cursos &amp; eventos</span>
-          <ul class="plain">
+      <ol class="tl">
+        <li class="r">
+          <time>out 2022 — out 2027</time>
+          <div>
+            <h3>Bacharelado em Engenharia Elétrica</h3>
+            <span class="org">Universidade Federal do Piauí</span>
+            <p>Ênfase em sistemas de potência, eletrônica de potência e modelagem computacional de redes.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="skills r">
+        <div class="skill"><span class="label">Programação</span><div class="chips"><span class="chip">Python</span><span class="chip">C / C++</span><span class="chip">MATLAB</span></div></div>
+        <div class="skill"><span class="label">Dados &amp; web</span><div class="chips"><span class="chip">Next.js</span><span class="chip">SQL</span><span class="chip">Power BI</span><span class="chip">Excel</span><span class="chip">Power Query</span></div></div>
+        <div class="skill"><span class="label">Software de engenharia</span><div class="chips"><span class="chip">ATP / ATPDraw</span><span class="chip">MATLAB / Simulink</span></div></div>
+        <div class="skill"><span class="label">Domínio técnico</span><div class="chips"><span class="chip">Sistemas de potência</span><span class="chip">Proteção de linhas</span><span class="chip">Eletrônica de potência</span><span class="chip">Smart Grid</span><span class="chip">Machine learning aplicado</span></div></div>
+        <details class="skill more-d" style="margin:0" data-track-open="detalhes/cursos"><summary>Cursos &amp; eventos</summary><ul class="plain more-body">
             <li>CONEEL 2025 — Congresso de Estudantes de Engenharia Elétrica</li>
             <li>Minicurso MATLAB — Conceitos Básicos em Sistemas de Controle</li>
             <li>Microsoft Excel 2016 — Básico e Intermediário</li>
-          </ul>
-        </div>
+          </ul></details>
       </div>
     </div>
   </section>
 
-  <!-- 05 CONTATO -->
-  <section class="alt contact" id="contato" aria-labelledby="h-cont">
+  <!-- CONTATO -->
+  <section class="contact" id="contato" aria-labelledby="h-cont">
     <div class="wrap">
       <span class="eyebrow r">Contato</span>
       <h2 class="h2 r" id="h-cont">Vamos conversar?</h2>
-      <p class="lede r">Aberto a oportunidades em sistemas de potência, automação e pesquisa aplicada — e a conversas técnicas em geral.</p>
+      <p class="lede r">Aberto a oportunidades em sistemas de potência, automação, pesquisa aplicada e projetos web.</p>
       <div class="ctas r">
-        <a class="btn btn-fill" href="mailto:andreluis.alvescarvalho125@gmail.com" data-track="contato/email">Enviar e-mail</a>
+        <a class="btn btn-fill" href="mailto:andreluis.alvescarvalho125@gmail.com" data-track="contato/email"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>Enviar e-mail</a>
       </div>
       <span class="mail-addr r">andreluis.alvescarvalho125@gmail.com</span>
       <div class="social r">
-        <a href="https://github.com/andrelsrv" rel="noopener" aria-label="GitHub: andrelsrv" data-track="contato/github">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
-        </a>
-        <a href="https://linkedin.com/in/enginnerandrel/" rel="noopener" aria-label="LinkedIn: enginnerandrel" data-track="contato/linkedin">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4V9.75Z"/></svg>
-        </a>
-        <a href="https://instagram.com/andrelsrv" rel="noopener" aria-label="Instagram: andrelsrv" data-track="contato/instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>
-        </a>
+        <a href="https://github.com/andrelsrv" rel="noopener" aria-label="GitHub" data-track="contato/github"><svg class="ico" aria-hidden="true"><use href="#i-github"/></svg></a>
+        <a href="https://linkedin.com/in/enginnerandrel/" rel="noopener" aria-label="LinkedIn" data-track="contato/linkedin"><svg class="ico" aria-hidden="true"><use href="#i-linkedin"/></svg></a>
+        <a href="https://instagram.com/andrelsrv" rel="noopener" aria-label="Instagram" data-track="contato/instagram"><svg class="ico" aria-hidden="true"><use href="#i-instagram"/></svg></a>
       </div>
-      <button class="share r" id="share" type="button" data-track="contato/compartilhar">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3M7.5 7.5 12 3l4.5 4.5M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>
-        <span>Compartilhar</span>
-      </button>
+      <button class="share r" id="share" type="button" data-track="contato/compartilhar"><svg class="ico" aria-hidden="true"><use href="#i-share"/></svg><span>Compartilhar</span></button>
       <span class="share-msg" id="shareMsg" role="status" aria-live="polite"></span>
 
       <div class="who r" role="group" aria-labelledby="who-q">
@@ -649,6 +760,7 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
           <button type="button" aria-pressed="false" data-track="publico/professor">Professor(a)</button>
           <button type="button" aria-pressed="false" data-track="publico/recrutador">Recrutador(a)</button>
           <button type="button" aria-pressed="false" data-track="publico/pesquisador">Pesquisador(a)</button>
+          <button type="button" aria-pressed="false" data-track="publico/cliente">Quero um site</button>
           <button type="button" aria-pressed="false" data-track="publico/curiosidade">Só curiosidade</button>
         </div>
       </div>
@@ -668,9 +780,9 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
         <p>A contagem é feita pelo GoatCounter, que não usa cookies nem identifica visitantes. São medidos só totais agregados:</p>
         <ul>
           <li>visualizações de página e origem do acesso (ex.: link da bio do Instagram);</li>
-          <li>cliques em contato, redes e repositórios, e no botão de compartilhar;</li>
-          <li>quanto da página foi rolado e quais seções foram vistas;</li>
-          <li>troca de tema e, se você escolher, a resposta “Como você chegou aqui?”.</li>
+          <li>cliques em contato, redes, WhatsApp e repositórios, e no botão de compartilhar;</li>
+          <li>quanto da página foi rolado, quais seções foram vistas e quais detalhes foram abertos;</li>
+          <li>interação com a linha de transmissão, troca de tema e, se você escolher, a resposta “Como você chegou aqui?”.</li>
         </ul>
         <p>Nenhum nome, e-mail, IP ou identificador de dispositivo é coletado. Com bloqueador de anúncios ativo, nada é enviado.</p>
       </div>

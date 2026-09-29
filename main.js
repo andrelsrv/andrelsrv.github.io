@@ -33,7 +33,7 @@
   if (/Instagram/i.test(navigator.userAgent || "")) track("origem/instagram-webview", true);
   try {
     var ref = (new URLSearchParams(location.search).get("ref") || "").toLowerCase();
-    if (/^(instagram|linkedin|cv|email)$/.test(ref)) track("origem/" + ref, true);
+    if (/^(instagram|linkedin|cv|email|whatsapp|app)$/.test(ref)) track("origem/" + ref, true);
   } catch (e) {}
 
   // Um único listener delegado para todos os [data-track]
@@ -81,7 +81,7 @@
   /* ---------- Nav: fundo ao rolar, menu móvel, scroll-spy ---------- */
   var nav = doc.getElementById("nav");
   var heroIn = doc.getElementById("heroIn");
-  var parallax = !reduce && matchMedia("(min-width: 768px) and (hover: hover)").matches;
+  var parallax = false; // hero interativo: sem parallax
   var ticking = false;
   function onScroll() {
     ticking = false;
@@ -103,7 +103,7 @@
     doc.addEventListener("keydown", function (e) { if (e.key === "Escape" && menu.open) { menu.open = false; menu.querySelector("summary").focus(); } });
   }
 
-  var sections = ["perfil", "experiencia", "pesquisa", "formacao", "contato"];
+  var sections = ["perfil", "experiencia", "web", "pesquisa", "formacao", "contato"];
   if (hasIO) {
     var navLinks = doc.querySelectorAll(".links a");
     var spy = new IntersectionObserver(function (entries) {
@@ -202,60 +202,162 @@
     });
   });
 
-  /* ---------- Onda viajante: incidente + reflexão ---------- */
-  var cv = doc.getElementById("wave");
-  if (cv && cv.getContext) {
-    var ctx = cv.getContext("2d"), W = 0, H = 0, running = false, visible = true, t0w = performance.now();
-    var styleOf = function (v) { return getComputedStyle(root).getPropertyValue(v).trim(); };
+  /* ---------- <details> abertos (detalhes técnicos, cronograma) ---------- */
+  doc.addEventListener("toggle", function (e) {
+    var d = e.target;
+    if (d.open && d.dataset && d.dataset.trackOpen) track(d.dataset.trackOpen, true);
+  }, true);
+
+  /* ---------- Linha de transmissão interativa ----------
+     Pulsos gaussianos viajam nas duas direções. Nas extremidades:
+     Γ = (ZL − Z0)/(ZL + Z0) → aberto +1, curto −1, casado 0 (absorvido).
+     Atenuação exponencial ao longo do percurso. */
+  var cv = doc.getElementById("wave"), stage = doc.getElementById("lineStage");
+  if (cv && cv.getContext && stage) {
+    var ctx = cv.getContext("2d"), W = 0, H = 0, dpr = 1;
+    var gamma = 1, pulses = [], running = false, visible = true, last = 0, tAmb = 0;
+    var SPEED = 0.55;      // fração da largura por segundo
+    var ALPHA = 0.28;      // atenuação (neper) por largura percorrida
+    var PAD = 14;          // margem para os símbolos de terminal
+    var colors = {};
+    var readColors = function () {
+      var cs = getComputedStyle(root);
+      colors = { fg: cs.getPropertyValue("--text").trim(), dim: cs.getPropertyValue("--text-2").trim(), acc: cs.getPropertyValue("--accent").trim() };
+    };
     var resize = function () {
-      var dpr = Math.min(window.devicePixelRatio || 1, 2), r = cv.getBoundingClientRect();
-      W = r.width; H = r.height; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var r = cv.getBoundingClientRect();
+      W = r.width; H = r.height;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
-    var pulse = function (x, c, w) { var d = (x - c) / w; return Math.exp(-d * d); };
-    var draw = function (now) {
-      var T = 5200, ph = ((now - t0w) % T) / T;     // 0..1
-      var L = W, mid = H * 0.56, A = H * 0.36, w = Math.max(L * 0.035, 10), gamma = -0.62;
-      var inc = ph * 2 * L - 0.15 * L;               // posição do pulso incidente
-      var ref = 2 * L - inc;                         // imagem refletida no terminal
-      var fade = ph > 0.88 ? (1 - ph) / 0.12 : ph < 0.06 ? ph / 0.06 : 1;
-      ctx.clearRect(0, 0, W, H);
-      var sec = styleOf("--text-2"), acc = styleOf("--accent"), fg = styleOf("--text");
-      // linha de base e terminais
-      ctx.lineWidth = 1; ctx.strokeStyle = sec; ctx.globalAlpha = 0.35;
-      ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(L, mid); ctx.stroke();
-      ctx.globalAlpha = 0.6;
-      ctx.beginPath(); ctx.moveTo(0.5, mid - 8); ctx.lineTo(0.5, mid + 8); ctx.moveTo(L - 0.5, mid - 8); ctx.lineTo(L - 0.5, mid + 8); ctx.stroke();
-      // sinal total
-      ctx.globalAlpha = fade; ctx.lineWidth = 1.5; ctx.strokeStyle = fg; ctx.lineJoin = "round";
+    var L = function () { return W - 2 * PAD; };
+    var sigma = function () { return Math.max(L() * 0.022, 7); };
+
+    // Avança um pulso por dt segundos, refletindo nas extremidades com o Γ atual.
+    var step = function (p, dt) {
+      var len = L(), d = SPEED * len * dt;
+      p.x += p.dir * d;
+      p.amp *= Math.exp(-ALPHA * d / len);
+      while (p.x < 0 || p.x > len) {
+        p.x = p.x > len ? 2 * len - p.x : -p.x;
+        p.dir = -p.dir; p.amp *= gamma;
+        if (gamma === 0) { p.amp = 0; break; }
+      }
+      return Math.abs(p.amp) > 0.015;
+    };
+    var fire = function (x) {
+      var len = L(); x = Math.min(Math.max(x - PAD, 0), len);
+      if (pulses.length > 14) pulses.splice(0, 2);
+      pulses.push({ x: x, dir: 1, amp: 0.9 }, { x: x, dir: -1, amp: 0.9 });
+      track("onda/toque", true);
+    };
+
+    var drawTerminal = function (xe, mid) {
+      ctx.save(); ctx.strokeStyle = colors.dim; ctx.lineWidth = 1.25; ctx.globalAlpha = 0.85;
       ctx.beginPath();
-      for (var x = 0; x <= L; x += 2) {
-        var y = (inc <= L ? pulse(x, inc, w) : 0) + (ref <= L ? gamma * pulse(x, ref, w) : 0);
-        var ring = Math.sin(x / (w * 0.55)) * 0.08 * (inc <= L ? pulse(x, inc - w * 2.2, w * 1.6) : 0);
-        var yy = mid - A * (y + ring);
-        x ? ctx.lineTo(x, yy) : ctx.moveTo(x, yy);
+      if (gamma === 1) {                              // aberto: círculo vazado
+        ctx.arc(xe, mid, 4, 0, 6.2832);
+      } else if (gamma === -1) {                      // curto: barra + terra
+        ctx.moveTo(xe, mid - 9); ctx.lineTo(xe, mid + 9);
+        ctx.moveTo(xe - 5, mid + 13); ctx.lineTo(xe + 5, mid + 13);
+      } else {                                        // casado: resistor
+        ctx.moveTo(xe, mid - 12);
+        for (var k = 0; k < 6; k++) ctx.lineTo(xe + (k % 2 ? -4 : 4), mid - 10 + k * 4);
+        ctx.lineTo(xe, mid + 12);
+      }
+      ctx.stroke(); ctx.restore();
+    };
+
+    // Forma de onda total: soma dos pulsos + onda ambiente sutil
+    var drawWave = function (list, amb, alpha, withDots) {
+      var len = L(), mid = H * 0.56, A = H * 0.34, sg = sigma();
+      ctx.globalAlpha = alpha; ctx.lineWidth = 1.6; ctx.strokeStyle = colors.fg; ctx.lineJoin = "round";
+      ctx.beginPath();
+      for (var x = 0; x <= len; x += 2) {
+        var y = 0;
+        for (var i = 0; i < list.length; i++) { var d = (x - list[i].x) / sg; if (d > -4 && d < 4) y += list[i].amp * Math.exp(-d * d / 2); }
+        if (amb) y += amb * Math.sin((x / len) * Math.PI * 6 - tAmb * 1.6) * Math.sin((x / len) * Math.PI);
+        var yy = mid - A * y;
+        if (x) ctx.lineTo(PAD + x, yy); else ctx.moveTo(PAD + x, yy);
       }
       ctx.stroke();
-      // ponto de frente de onda
-      var head = inc <= L ? inc : ref;
-      if (head >= 0 && head <= L) {
-        var hv = inc <= L ? 1 : gamma;
-        ctx.fillStyle = acc; ctx.beginPath(); ctx.arc(head, mid - A * hv, 2.6, 0, 6.2832); ctx.fill();
+      if (withDots) {
+        ctx.fillStyle = colors.acc;
+        for (var j = 0; j < list.length; j++) {
+          ctx.globalAlpha = alpha * Math.min(1, Math.abs(list[j].amp) * 1.6);
+          ctx.beginPath(); ctx.arc(PAD + list[j].x, mid - A * list[j].amp, 2.8, 0, 6.2832); ctx.fill();
+        }
       }
       ctx.globalAlpha = 1;
     };
-    var loop = function (now) { if (!running) return; draw(now); requestAnimationFrame(loop); };
-    var start = function () { if (!running && visible && !doc.hidden) { running = true; requestAnimationFrame(loop); } };
+    var frame = function () {
+      ctx.clearRect(0, 0, W, H);
+      var mid = H * 0.56;
+      ctx.strokeStyle = colors.dim; ctx.globalAlpha = 0.28; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(PAD, mid); ctx.lineTo(W - PAD, mid); ctx.stroke(); ctx.globalAlpha = 1;
+      drawTerminal(PAD, mid); drawTerminal(W - PAD, mid);
+    };
+
+    var loop = function (now) {
+      if (!running) return;
+      var dt = Math.min((now - (last || now)) / 1000, 0.05); last = now; tAmb += dt;
+      pulses = pulses.filter(function (p) { return step(p, dt); });
+      frame();
+      drawWave(pulses, pulses.length ? 0.03 : 0.06, 1, true);
+      requestAnimationFrame(loop);
+    };
+    var start = function () { if (!running && visible && !doc.hidden) { running = true; last = 0; requestAnimationFrame(loop); } };
     var stop = function () { running = false; };
-    resize();
-    window.addEventListener("resize", function () { resize(); if (!running) draw(t0w + 5200 * 0.32); });
-    if (reduce) {
-      draw(t0w + 5200 * 0.32); // quadro estático
-      darkMQ.addEventListener && darkMQ.addEventListener("change", function () { draw(t0w + 5200 * 0.32); });
-      if (toggle) toggle.addEventListener("click", function () { draw(t0w + 5200 * 0.32); });
-    } else {
-      if (hasIO) new IntersectionObserver(function (en) { visible = en[0].isIntersecting; visible ? start() : stop(); }).observe(cv);
-      doc.addEventListener("visibilitychange", function () { doc.hidden ? stop() : start(); });
+
+    // Movimento reduzido: sem animação contínua; um toque mostra o pulso em quadros discretos sobrepostos.
+    var lastShot = null;
+    var staticShot = function (x) {
+      lastShot = x; frame();
+      if (x == null) { drawWave([], 0, 1, false); return; }
+      var len = L(), x0 = Math.min(Math.max(x - PAD, 0), len);
+      var sim = [{ x: x0, dir: 1, amp: 0.9 }, { x: x0, dir: -1, amp: 0.9 }];
+      var N = 6, dtk = 1.9 / SPEED / N;
+      for (var k = 0; k < N; k++) {
+        drawWave(sim, 0, 0.22 + 0.78 * (k / (N - 1)), k === N - 1);
+        sim = sim.filter(function (p) { return step(p, dtk); });
+      }
+      track("onda/toque", true);
+    };
+    var fireAt = function (x) { if (reduce) staticShot(x); else { fire(x); start(); } };
+
+    readColors(); resize(); lastW = W;
+    stage.addEventListener("click", function (e) {
+      var r = cv.getBoundingClientRect();
+      fireAt(e.detail === 0 ? W / 2 : e.clientX - r.left); // detail 0 = ativação por teclado
+    });
+    stage.addEventListener("keydown", function (e) {
+      if (e.key === " " || e.key === "Enter") { e.preventDefault(); fireAt(W / 2); }
+    });
+    var term = doc.getElementById("term"), gTxt = doc.getElementById("gammaTxt");
+    var names = { "1": ["aberto", "+1"], "-1": ["curto", "−1"], "0": ["casado", "0"] };
+    if (term) term.addEventListener("change", function (e) {
+      if (e.target.name !== "term") return;
+      gamma = +e.target.value;
+      term.querySelectorAll("label").forEach(function (l) { l.classList.toggle("on", l.contains(e.target)); });
+      var n = names[e.target.value];
+      if (gTxt) gTxt.innerHTML = "Γ = (Z<sub>L</sub> − Z<sub>0</sub>) / (Z<sub>L</sub> + Z<sub>0</sub>) · terminal " + n[0] + ": Γ = " + n[1];
+      track("onda/terminal-" + n[0]);
+      if (!running) staticShot(null);
+    });
+    var redraw = function () { readColors(); if (!running) staticShot(lastShot); };
+    var lastW;
+    window.addEventListener("resize", function () {
+      var w = cv.getBoundingClientRect().width;
+      resize(); if (!running) staticShot(w === lastW ? lastShot : null); lastW = w;
+    });
+    if (darkMQ.addEventListener) darkMQ.addEventListener("change", redraw);
+    if (toggle) toggle.addEventListener("click", function () { setTimeout(redraw, 0); });
+
+    if (reduce) staticShot(null);
+    else {
+      if (hasIO) new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) start(); else stop(); }).observe(cv);
+      doc.addEventListener("visibilitychange", function () { if (doc.hidden) stop(); else start(); });
       start();
     }
   }
