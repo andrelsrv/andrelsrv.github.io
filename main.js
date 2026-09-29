@@ -217,7 +217,7 @@
     var ctx = cv.getContext("2d"), W = 0, H = 0, dpr = 1;
     var gamma = 1, pulses = [], running = false, visible = true, last = 0, tAmb = 0;
     var SPEED = 0.55;      // fração da largura por segundo
-    var ALPHA = 0.28;      // atenuação (neper) por largura percorrida
+    var ALPHA = 0.6;       // atenuação (neper) por largura percorrida
     var PAD = 14;          // margem para os símbolos de terminal
     var colors = {};
     var readColors = function () {
@@ -246,11 +246,14 @@
       }
       return Math.abs(p.amp) > 0.015;
     };
-    var fire = function (x) {
+    var lastPulse = -1e9;
+    var fire = function (x, auto) {
       var len = L(); x = Math.min(Math.max(x - PAD, 0), len);
       if (pulses.length > 14) pulses.splice(0, 2);
-      pulses.push({ x: x, dir: 1, amp: 0.9 }, { x: x, dir: -1, amp: 0.9 });
-      track("onda/toque", true);
+      var a = auto ? 0.6 : 0.9;
+      pulses.push({ x: x, dir: 1, amp: a }, { x: x, dir: -1, amp: a });
+      lastPulse = performance.now();
+      if (!auto) track("onda/toque", true);
     };
 
     var drawTerminal = function (xe, mid) {
@@ -303,6 +306,8 @@
       if (!running) return;
       var dt = Math.min((now - (last || now)) / 1000, 0.05); last = now; tAmb += dt;
       pulses = pulses.filter(function (p) { return step(p, dt); });
+      // Sem interação, um pulso de demonstração a cada ~3 s mantém a linha viva
+      if (!pulses.length && now - lastPulse > 2800) fire(PAD + L() * (0.25 + Math.random() * 0.5), true);
       frame();
       drawWave(pulses, pulses.length ? 0.03 : 0.06, 1, true);
       requestAnimationFrame(loop);
@@ -333,17 +338,6 @@
     });
     stage.addEventListener("keydown", function (e) {
       if (e.key === " " || e.key === "Enter") { e.preventDefault(); fireAt(W / 2); }
-    });
-    var term = doc.getElementById("term"), gTxt = doc.getElementById("gammaTxt");
-    var names = { "1": ["aberto", "+1"], "-1": ["curto", "−1"], "0": ["casado", "0"] };
-    if (term) term.addEventListener("change", function (e) {
-      if (e.target.name !== "term") return;
-      gamma = +e.target.value;
-      term.querySelectorAll("label").forEach(function (l) { l.classList.toggle("on", l.contains(e.target)); });
-      var n = names[e.target.value];
-      if (gTxt) gTxt.innerHTML = "Γ = (Z<sub>L</sub> − Z<sub>0</sub>) / (Z<sub>L</sub> + Z<sub>0</sub>) · terminal " + n[0] + ": Γ = " + n[1];
-      track("onda/terminal-" + n[0]);
-      if (!running) staticShot(null);
     });
     var redraw = function () { readColors(); if (!running) staticShot(lastShot); };
     var lastW;

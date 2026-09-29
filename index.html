@@ -167,8 +167,9 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
 }
 
 /* ============ Hero + linha interativa ============ */
-.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
-  padding:calc(var(--nav-h) + var(--safe-top) + 28px) 0 calc(20px + env(safe-area-inset-bottom,0px))}
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;
+  padding:calc(var(--nav-h) + var(--safe-top) + clamp(40px,10vh,120px)) 0 calc(16px + env(safe-area-inset-bottom,0px))}
+.hero>.wrap{flex:1;display:flex;flex-direction:column}
 .name{font-size:var(--fs-hero);font-weight:700;line-height:1.02;letter-spacing:-.04em;text-wrap:balance;
   color:var(--text);background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .tagline{font-size:clamp(1.1875rem,1rem + 1.1vw,1.625rem);font-weight:500;line-height:1.3;letter-spacing:-.015em;color:var(--text-2);max-width:30ch;margin-top:16px;text-wrap:balance}
@@ -183,24 +184,11 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
 .btn:active{transform:scale(.97)}
 @media (hover:hover){.btn:hover{transform:scale(1.02)} .btn-fill:hover{background:#0077ed} .btn-ghost:hover{background:var(--accent);color:var(--bg)}}
 
-.line{margin-top:clamp(28px,6vh,56px)}
+.line{margin-top:auto;padding-top:32px}
 .line-stage{position:relative;cursor:crosshair;touch-action:pan-y;-webkit-tap-highlight-color:transparent;border-radius:12px}
-.line-stage canvas{width:100%;height:clamp(150px,34vw,260px)}
+.line-stage canvas{width:100%;height:clamp(180px,46vw,240px)}
 .line-static{position:absolute;inset:0;width:100%;height:100%;color:var(--text)}
 .js .line-static{display:none}
-.line-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;margin-top:10px}
-.line-cap{display:block;font-size:var(--fs-sm);color:var(--text-2)}
-.line-cap b{font-weight:600}
-.gamma{display:block;font-size:var(--fs-xs);color:var(--text-2);font-variant-numeric:tabular-nums;margin-top:2px}
-.term{display:none}
-.js .term{display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;padding:3px;border-radius:12px;background:var(--surface-2)}
-.term legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.term label{position:relative;display:grid;place-items:center;min-height:44px;padding:0 14px;border-radius:9px;font-size:.9375rem;font-weight:500;color:var(--text-2);cursor:pointer;transition:color .2s,background-color .2s}
-.term input{position:absolute;opacity:0;pointer-events:none}
-.term input:checked+span{color:var(--text)}
-.term label:has(input:checked){background:var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.12)}
-.term label.on{background:var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.12)}
-.term input:focus-visible+span{outline:2px solid var(--accent);outline-offset:4px;border-radius:6px}
 
 /* ============ Perfil: bento ============ */
 .bio{margin-top:20px;color:var(--text-2);max-width:52ch}
@@ -261,7 +249,8 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
 .panel .chip,.card .chip,.proj .chip,.skills .chip{background:var(--bg-alt)}
 .card-body .chips{margin-top:20px}
 @media (hover:hover){.chip:hover{transform:scale(1.04)}}
-.row-links{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;margin-top:20px}
+.row-links{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;margin-top:16px}
+.row-links+.more-d{margin-top:0}
 
 .more-d{margin-top:20px}
 .more-d>summary{list-style:none;display:inline-flex;align-items:center;min-height:44px;color:var(--accent);font-weight:500;cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -290,17 +279,16 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
 
 /* Card da segunda pesquisa */
 .card{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden;margin-top:clamp(56px,10vw,120px);display:grid}
-.card-art{background:var(--inset);display:grid;grid-template-columns:auto 1fr;align-items:end;gap:16px 20px;padding:22px 20px}
-.card-art .badge{grid-column:1/-1}
-.badge{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:var(--fs-xs);font-weight:600;color:var(--text);padding:6px 12px;border-radius:var(--pill);background:var(--surface)}
+.card-art{background:var(--inset);display:flex;flex-direction:column;gap:18px;padding:24px 20px}
+.badge{align-self:flex-start;justify-self:start;display:inline-flex;align-items:center;gap:8px;font-size:var(--fs-xs);font-weight:600;color:var(--text);padding:6px 12px;border-radius:var(--pill);background:var(--surface)}
 .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:#30d158}
 .spec{display:flex;align-items:flex-end;gap:14px}
 .spec-n{font-size:clamp(4.5rem,22vw,9rem);font-weight:700;line-height:.8;letter-spacing:-.06em;
   color:var(--text);background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.spec-l{font-size:clamp(1.125rem,4.5vw,1.625rem);font-weight:600;line-height:1.1;letter-spacing:-.02em;max-width:6ch;padding-bottom:.2em}
-.spec-list{display:grid;gap:6px;font-size:var(--fs-sm);color:var(--text)}
+.spec-l{font-size:clamp(1.125rem,4.5vw,1.625rem);font-weight:600;line-height:1.1;letter-spacing:-.02em;max-width:8ch;padding-bottom:.2em}
+.spec-list{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;font-size:var(--fs-sm);color:var(--text)}
 .spec-list b{font-size:1.25rem;font-weight:650;letter-spacing:-.02em;margin-right:4px;font-variant-numeric:tabular-nums}
-.spec-web{display:flex;align-items:center;gap:8px}
+.spec-web{display:flex;align-items:center;gap:8px;flex-basis:100%}
 .spec-web::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
 .card-body{padding:26px 22px 28px}
 .card-body .h3{margin-top:2px}
@@ -346,7 +334,8 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
 .foot{border-top:1px solid var(--line);padding:22px 0 calc(26px + env(safe-area-inset-bottom,0px));font-size:var(--fs-xs);color:var(--text-2)}
 .foot-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px}
 .privacy{margin-top:10px}
-.privacy summary{cursor:pointer;min-height:44px;display:flex;align-items:center;color:var(--text-2)}
+.privacy summary{cursor:pointer;padding:12px 0;color:var(--text-2);list-style:none}
+.privacy summary::-webkit-details-marker{display:none}
 .privacy summary span{color:var(--accent);margin-left:.35em}
 .privacy[open] summary span{display:none}
 .privacy div{max-width:62ch;padding-bottom:8px;line-height:1.55}
@@ -376,7 +365,7 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
   .proj{padding:34px}
   .card{grid-template-columns:5fr 7fr}
   .card-art{display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:24px;padding:48px 40px}
-  .spec-list{gap:10px}
+  .spec-list{flex-direction:column;flex-wrap:nowrap;gap:10px}
   .spec-web{padding-top:12px;border-top:1px solid var(--line)}
   .card-body{padding:44px 40px}
   .tl{padding-left:0}
@@ -459,7 +448,7 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
         <a class="btn btn-ghost" href="#contato">Contato</a>
       </div>
 
-      <figure class="line rise" style="--i:4" aria-labelledby="lineCap">
+      <figure class="line rise" style="--i:4">
         <div class="line-stage" id="lineStage" tabindex="0" role="button" aria-label="Disparar um pulso no centro da linha de transmissão">
           <canvas id="wave" aria-hidden="true"></canvas>
           <!-- Sem JavaScript: um quadro estático do pulso incidente e refletido -->
@@ -467,18 +456,6 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
             <path d="M0 60H400" opacity=".3" vector-effect="non-scaling-stroke"/>
             <path d="M0 60H120C132 60 136 24 146 24S160 60 172 60H300C312 60 316 42 326 42S340 60 352 60H400" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
           </svg>
-        </div>
-        <div class="line-bar">
-          <figcaption id="lineCap">
-            <span class="line-cap"><b>Toque na linha.</b> Veja o pulso refletir.</span>
-            <span class="gamma" id="gammaTxt">Γ = (Z<sub>L</sub> − Z<sub>0</sub>) / (Z<sub>L</sub> + Z<sub>0</sub>) · terminal aberto: Γ = +1</span>
-          </figcaption>
-          <fieldset class="term" id="term">
-            <legend>Terminação da linha</legend>
-            <label class="on"><input type="radio" name="term" value="1" checked><span>Aberto</span></label>
-            <label><input type="radio" name="term" value="-1"><span>Curto</span></label>
-            <label><input type="radio" name="term" value="0"><span>Casado</span></label>
-          </fieldset>
         </div>
       </figure>
     </div>
@@ -509,7 +486,7 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
       <h2 class="h2 r" id="h-exp">Da pesquisa à prática.</h2>
       <ol class="tl">
         <li class="r">
-          <time><span class="todo">[PREENCHER início]</span> — atual</time>
+          <time>atual</time>
           <div>
             <h3>Estagiário em Análise de Sistemas</h3>
             <span class="org">Ferrnorte · estágio remunerado</span>
@@ -546,7 +523,7 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
           </div>
         </li>
         <li>
-          <time><span class="todo">[PREENCHER datas]</span> · voluntário</time>
+          <time>voluntário</time>
           <div>
             <h3>Assistente Técnico</h3>
             <span class="org">Rádio comunitária</span>
@@ -567,24 +544,13 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
 
       <div class="projects">
         <article class="proj r">
-          <span class="eyebrow" style="margin:0">Ferrnorte · sistema interno</span>
+          <span class="eyebrow" style="margin:0">Ferrnorte · estágio em Análise de Sistemas</span>
           <h3>Site de gestão de viagens</h3>
-          <dl>
-            <div><dt>Problema</dt><dd><span class="todo">[PREENCHER: 1–2 frases]</span></dd></div>
-            <div><dt>O que foi construído</dt><dd><span class="todo">[PREENCHER]</span></dd></div>
-            <div><dt>Resultado</dt><dd><span class="todo">[PREENCHER]</span></dd></div>
-          </dl>
-          <div><span class="label">Stack</span><div class="chips"><span class="todo">[PREENCHER]</span></div></div>
-          <span class="todo" style="align-self:flex-start">[PREENCHER: link público]</span>
+          <p style="color:var(--text-2)">Sistema web criado para organizar e acompanhar as viagens da empresa — parte do trabalho de modelar sistemas que apoiam os processos internos.</p>
+          <div><span class="label">No dia a dia</span><div class="chips"><span class="chip">Next.js</span><span class="chip">SQL</span><span class="chip">Power BI</span><span class="chip">Excel</span><span class="chip">Power Query</span></div></div>
         </article>
 
-        <article class="proj r" style="--i:1">
-          <span class="eyebrow" style="margin:0">Clientes</span>
-          <h3>Sites de clientes</h3>
-          <p class="todo" style="align-self:flex-start">[PREENCHER: somente com autorização de exibição]</p>
-        </article>
-
-        <article class="proj self wide r" aria-labelledby="h-self">
+        <article class="proj self r" style="--i:1" aria-labelledby="h-self">
           <span class="eyebrow" style="margin:0">Este site</span>
           <h3 id="h-self">Zero framework, zero build.</h3>
           <p>HTML, CSS e JavaScript escritos à mão. Medido com Lighthouse, no modo celular:</p>
@@ -600,8 +566,8 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
 
       <div class="hire r">
         <p>Quer um site assim?</p>
-        <a class="btn btn-wa" href="https://wa.me/PREENCHER_NUMERO?text=Ol%C3%A1%2C%20Andr%C3%A9!%20Vi%20seu%20site%20e%20quero%20conversar%20sobre%20um%20projeto." rel="noopener" data-track="clique/whatsapp">
-          <svg class="ico" aria-hidden="true"><use href="#i-whatsapp"/></svg>Fale comigo no WhatsApp
+        <a class="btn btn-fill" href="mailto:andreluis.alvescarvalho125@gmail.com?subject=Projeto%20de%20site" data-track="clique/orcamento">
+          <svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>Fale comigo
         </a>
       </div>
     </div>
@@ -662,7 +628,6 @@ section{padding:var(--sec-y) 0;scroll-margin-top:calc(var(--nav-h) + var(--safe-
                 </ul>
               </div>
             </div>
-            <div class="fig">Oscilografia com a falta marcada (SVG) · <span class="todo">[PREENCHER: dados da oscilografia]</span></div>
             <p class="fine">Escopo validado · 200 km · Rfault 0–300 Ω · ângulo 0–360°</p>
           </div>
         </details>

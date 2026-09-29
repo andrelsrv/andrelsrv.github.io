@@ -48,8 +48,8 @@ e abrir `http://localhost:8000`.
 ## A linha de transmissão (hero)
 
 Pulsos gaussianos viajam nas duas direções a partir do toque e refletem nas
-extremidades com Γ = (Z_L − Z_0)/(Z_L + Z_0): aberto Γ = +1, curto Γ = −1,
-casado Γ = 0 (absorvido), com atenuação exponencial ao longo do percurso.
+extremidades em aberto (Γ = +1), com atenuação exponencial ao longo do
+percurso. Sem interação, um pulso de demonstração é disparado a cada ~3 s.
 Pausa fora da tela e com a aba oculta. Com `prefers-reduced-motion`, a linha
 fica estática e um toque desenha o pulso em quadros discretos sobrepostos.
 Sem JavaScript, um SVG estático mostra o pulso incidente e o refletido.
@@ -79,10 +79,9 @@ Acessos a partir de `localhost` são ignorados pelo GoatCounter.
 | `evento/contato/email` | Clique em “Enviar e-mail” |
 | `evento/contato/github` · `linkedin` · `instagram` | Clique nos ícones sociais |
 | `evento/contato/compartilhar` | Botão Compartilhar / Copiar link |
-| `evento/clique/whatsapp` | “Fale comigo no WhatsApp” |
+| `evento/clique/orcamento` | “Quer um site assim? Fale comigo” |
 | `evento/repo/classificador-faltas` | “Ver repositório” do Classificador de Faltas |
 | `evento/onda/toque` | Primeiro toque na linha de transmissão do hero |
-| `evento/onda/terminal-aberto` · `curto` · `casado` | Troca da terminação da linha |
 | `evento/detalhes/classificador` · `icv` · `experiencia` · `cursos` | Abertura dos blocos recolhidos |
 | `evento/scroll/25` · `50` · `75` · `100` | Profundidade de rolagem (uma vez cada) |
 | `evento/secao/perfil` · `experiencia` · `web` · `pesquisa` · `formacao` · `contato` | Seção vista (uma vez cada) — compare os totais para ver a mais visitada |
